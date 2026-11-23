@@ -153,7 +153,7 @@ a{color:#141216}a:hover{color:#c4652f}
       </div>
       <div class="fffanc" style="width: 300px; flex-shrink: 0; position: relative; z-index: 2">
         <div style="border-radius: 48px; padding: 9px; background: #141216; box-shadow: 0 40px 90px rgba(20,18,22,.24)">
-          <img src="img/tank-view.jpg" alt="A planted tank full of fish, with Feed, Clean, Edit and Goals below" style="display: block; width: 100%; height: 600px; object-fit: cover; object-position: top; border-radius: 40px">
+          <video id="playv" src="img/phone-play.mp4" poster="img/phone-play.jpg" autoplay muted loop playsinline preload="auto" aria-label="Fin &amp; Fern being played: feeding the fish, building a tank, the den, catching a rare koi and the greenhouse" style="display: block; width: 100%; height: 600px; object-fit: cover; object-position: top; border-radius: 40px; background: #22392c"></video>
         </div>
       </div>
       <div class="fffan-side fffanr" style="width: 260px; flex-shrink: 0; margin-left: -36px; margin-top: 80px">
@@ -657,5 +657,13 @@ a{color:#141216}a:hover{color:#c4652f}
     </nav>
   </footer>
 </div>
+<script>
+  /* the hero phone plays the game; it rests when off screen, and stays on its first frame for reduced motion */
+  (() => {
+    const v = document.getElementById('playv'); if (!v) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches){ v.removeAttribute('autoplay'); v.pause(); return; }
+    new IntersectionObserver(es => { if (es[0].isIntersecting) v.play().catch(() => {}); else v.pause(); }).observe(v);
+  })();
+  </script>
 </body>
 </html>
