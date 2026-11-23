@@ -72,6 +72,18 @@ a{color:#141216}a:hover{color:#c4652f}
   @keyframes ffdriftc{from{transform:translateY(90px)}to{transform:translateY(0)}}
   .ffdriftc{animation:ffdriftc linear both;animation-timeline:view();animation-range:entry 0% cover 60%}
 }
+/* the hero tank */
+.aq{position:relative;z-index:1;width:100vw;margin:36px 0 0;flex:none;height:clamp(400px,66vh,640px);overflow:hidden;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;user-select:none}
+#aq{position:absolute;left:0;top:0;image-rendering:pixelated;image-rendering:crisp-edges;opacity:0;transition:opacity .8s ease}
+#aq.on{opacity:1}
+.aqhint{position:absolute;left:max(24px,calc(50% - 560px));top:clamp(40px,9%,64px);margin:0;display:inline-flex;align-items:center;gap:10px;height:40px;padding:0 16px 0 12px;border-radius:999px;background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(10px) saturate(1.3);backdrop-filter:blur(10px) saturate(1.3);font:600 15px 'Pixelify Sans',ui-monospace,monospace;color:#21414f;pointer-events:none;transition:opacity .5s,transform .5s}
+.aqhint span{width:14px;height:14px;background:linear-gradient(#d08a44 0 0) 0 4px/4px 4px no-repeat,linear-gradient(#9a5e30 0 0) 6px 0/4px 4px no-repeat,linear-gradient(#d08a44 0 0) 10px 8px/4px 4px no-repeat;animation:aqsprinkle 1.6s steps(4) infinite}
+@keyframes aqsprinkle{50%{transform:translateY(3px)}}
+.aq.fed .aqhint{opacity:0;transform:translateY(-8px)}
+#top{--fanlift:-230px}
+.aqfan{position:relative;z-index:2}
+@media (max-width: 860px){#top{--fanlift:-170px}.aq{height:clamp(380px,58vh,520px)}}
+@media (prefers-reduced-motion: reduce){.aqhint{display:none}.aq{cursor:default}}
 /* reviews: two rows drift in opposite directions; hover, focus or a finger on a card stops them */
 .rvwrap{width:100%;display:flex;flex-direction:column;gap:16px;margin-top:22px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
 .rvtrack{overflow:hidden;padding:6px 0 14px}
@@ -133,8 +145,7 @@ a{color:#141216}a:hover{color:#c4652f}
   </header>
 
   <main>
-  <section id="top" style="position: relative; z-index: 1; padding: 72px 24px 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 26px">
-    <img class="px ffbob" src="img/fin.png" alt="Fin, the pixel goldfish" style="width: 172px; height: 100px">
+  <section id="top" style="position: relative; z-index: 1; padding: 92px 24px 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 26px">
     <h1 style="margin: 0; font-weight: 900; line-height: .92; letter-spacing: -0.05em; font-size: clamp(52px, 9.5vw, 128px)">A little world,<br>under water.</h1>
     <p style="margin: 0; max-width: 520px; font-size: clamp(17px, 1.8vw, 20px); font-weight: 700; line-height: 1.5; color: #6b6670">Scape tanks, grow plants, catch rare fish and breed new ones. A cozy pixel aquarium for iPhone and iPad.</p>
     <a href="https://apps.apple.com/app/id6826121169" style="display: inline-flex; align-items: center; gap: 10px; height: 54px; padding: 0 26px; border-radius: 999px; background: #141216; color: #ffffff; text-decoration: none; font-weight: 900; font-size: 16px">
@@ -145,7 +156,12 @@ a{color:#141216}a:hover{color:#c4652f}
       <span>Free to try</span><span aria-hidden="true">·</span><span>Made for iPhone Duo</span><span aria-hidden="true">·</span><span>9 languages</span><span aria-hidden="true">·</span><span>No forced ads</span>
     </div>
 
-    <div style="display: flex; justify-content: center; align-items: flex-start; margin-top: 56px; height: 640px; width: 100%; max-width: 1000px; overflow: visible">
+    <div class="aq" id="aqwrap">
+      <canvas id="aq" aria-hidden="true"></canvas>
+      <p class="aqhint"><span aria-hidden="true"></span>Tap the water to feed them</p>
+    </div>
+
+    <div class="aqfan" style="display: flex; justify-content: center; align-items: flex-start; margin-top: var(--fanlift); height: 640px; width: 100%; max-width: 1000px; overflow: visible">
       <div class="fffan-side fffanl" style="width: 260px; flex-shrink: 0; margin-right: -36px; margin-top: 80px">
         <div style="border-radius: 44px; padding: 8px; background: #141216; box-shadow: 0 30px 70px rgba(20,18,22,.16)">
           <img src="img/greenhouse.jpg" alt="The Plant Farm greenhouse" style="display: block; width: 100%; height: 500px; object-fit: cover; object-position: top; border-radius: 37px">
@@ -657,5 +673,150 @@ a{color:#141216}a:hover{color:#c4652f}
     </nav>
   </footer>
 </div>
+<script>
+/* The hero tank: real Fin & Fern pixel fish on a true pixel grid. Fin follows the pointer, a tap drops food, fish race to eat it. */
+(() => {
+  const wrap = document.getElementById('aqwrap'), cv = document.getElementById('aq'); if (!wrap || !cv) return;
+  const ctx = cv.getContext('2d'), RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const WATER = ['#dff4f4', '#cdeef0', '#b6e4ea', '#9bd5e1', '#7ec3d6', '#64aecb', '#4f97bb', '#4285ae'];
+  const SAND = ['#ecdcb4', '#dfc995', '#cfb47f', '#bd9d68'], SOIL = ['#7a5640', '#654532', '#523726'];
+  const VALL = ['#3f8f45', '#56a84f', '#76c35a', '#a3dd7a'], ROT = ['#a93b4b', '#cf5c5c', '#ef8d74'], ROCK = ['#68707d', '#848c99', '#a7afba', '#c9cfd6'];
+  const BAYER = [[0, 8, 2, 10], [12, 4, 14, 6], [3, 11, 1, 9], [15, 7, 13, 5]];
+  const rnd = (a, b) => a + Math.random() * (b - a), pick = L => L[Math.floor(Math.random() * L.length)];
+  let P = 4, W = 0, H = 0, bg = null, ground = [], blades = [], stems = [], fish = [], food = [], bubbles = [], hearts = [], sprites = {}, t = 0, last = 0, running = false, ptr = null, fed = false;
+  const DEFS = [
+    {k: 'fin', src: 'img/fin.png', b: 36, left: 1, s: 2, sp: 15, star: 1},
+    {k: 'discus', cell: [3, 1], sp: 6}, {k: 'angel', cell: [4, 1], sp: 6}, {k: 'betta', cell: [5, 1], sp: 8},
+    {k: 'koi', cell: [0, 4], sp: 10}, {k: 'oranda', cell: [3, 4], sp: 7}, {k: 'ram', cell: [2, 5], sp: 9},
+    {k: 'neon', cell: [5, 5], sp: 13, school: 4},
+    {k: 'maple', src: 'img/fish-maple-koi.png', b: 3, sp: 10}, {k: 'phoenix', src: 'img/fish-phoenix-goldfish.png', b: 3, sp: 7},
+    {k: 'crystal', src: 'img/fish-crystal-angelfish.png', b: 3, sp: 6}, {k: 'axo', src: 'img/fish-axolotl.png', b: 3, sp: 4, bottom: 1}];
+  const SMALL = ['fin', 'betta', 'koi', 'oranda', 'neon', 'axo', 'ram'];
+  const load = src => new Promise(r => { const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = src; });
+  // shrink a sprite to one canvas pixel per art pixel, then trim the empty edge
+  function art(img, sx, sy, sw, sh, b){ const w = Math.round(sw / b), h = Math.round(sh / b), c = document.createElement('canvas'); c.width = w; c.height = h;
+    const x = c.getContext('2d'); x.imageSmoothingEnabled = false; x.drawImage(img, sx, sy, sw, sh, 0, 0, w, h);
+    const d = x.getImageData(0, 0, w, h).data; let x0 = w, y0 = h, x1 = -1, y1 = -1;
+    for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) if (d[(j * w + i) * 4 + 3] > 40){ x0 = Math.min(x0, i); x1 = Math.max(x1, i); y0 = Math.min(y0, j); y1 = Math.max(y1, j); }
+    if (x1 < 0) return null; const o = document.createElement('canvas'); o.width = x1 - x0 + 1; o.height = y1 - y0 + 1; o.getContext('2d').drawImage(c, -x0, -y0); return o; }
+  function scaled(c, s){ if (s === 1) return c; const o = document.createElement('canvas'); o.width = c.width * s; o.height = c.height * s; const x = o.getContext('2d'); x.imageSmoothingEnabled = false; x.drawImage(c, 0, 0, o.width, o.height); return o; }
+  function flipped(c){ const o = document.createElement('canvas'); o.width = c.width; o.height = c.height; const x = o.getContext('2d'); x.translate(c.width, 0); x.scale(-1, 1); x.drawImage(c, 0, 0); return o; }
+  const gy = x => ground[Math.max(0, Math.min(W - 1, Math.round(x)))] || H - 10;
+  const surf = (x, tt) => 3 + Math.round(Math.sin(x * .09 + tt * 1.6) * 1.1 + Math.sin(x * .031 - tt * .9) * .9);
+  function dither(cols, f, x, y){ const n = cols.length - 1, v = Math.max(0, Math.min(.9999, f)) * n, i = Math.floor(v); return cols[Math.min(n, i + ((v - i) * 16 > BAYER[y & 3][x & 3] ? 1 : 0))]; }
+
+  function layout(){
+    const r = wrap.getBoundingClientRect(); P = r.width < 700 ? 3 : 4; W = Math.ceil(r.width / P); H = Math.ceil(r.height / P);
+    cv.width = W; cv.height = H; cv.style.width = W * P + 'px'; cv.style.height = H * P + 'px';
+    ground = []; const p1 = rnd(0, 6), p2 = rnd(0, 6);
+    for (let x = 0; x < W; x++) ground.push(Math.round(H - 13 - Math.sin(x * .028 + p1) * 3 - Math.sin(x * .071 + p2) * 1.5));
+    // the still part: water, sand, soil, stones and moss balls
+    bg = document.createElement('canvas'); bg.width = W; bg.height = H; const b = bg.getContext('2d'), img = b.createImageData(W, H), D = img.data;
+    const put = (x, y, hex) => { const k = (y * W + x) * 4; D[k] = parseInt(hex.slice(1, 3), 16); D[k + 1] = parseInt(hex.slice(3, 5), 16); D[k + 2] = parseInt(hex.slice(5, 7), 16); D[k + 3] = 255; };
+    for (let x = 0; x < W; x++){ const g = ground[x];
+      for (let y = 0; y < H; y++){
+        if (y < g) put(x, y, dither(WATER, y / (H - 8), x, y));
+        else if (y < H - 4) put(x, y, (x * 7 + y * 13) % 23 === 0 ? SAND[3] : dither(SAND, (y - g) / (H - 4 - g + 1) * .9, x, y));
+        else put(x, y, dither(SOIL, (y - (H - 4)) / 4, x, y)); } }
+    b.putImageData(img, 0, 0);
+    const blob = (cx, cy, rx, ry, cols) => { for (let y = -ry; y <= ry; y++) for (let x = -rx; x <= rx; x++){ const d = (x / rx) ** 2 + (y / ry) ** 2; if (d <= 1 && cy + y < gy(cx + x) + 3){ b.fillStyle = cols[Math.min(cols.length - 1, Math.max(0, Math.round((1 - d) * (cols.length - 1) * .6 + (y < 0 ? 1 : 0) - (x > rx * .4 ? 1 : 0))))]; b.fillRect(cx + x, cy + y, 1, 1); } } };
+    const nR = Math.max(2, Math.round(W / 90));
+    for (let i = 0; i < nR; i++){ const x = Math.round(rnd(.08, .92) * W), s = rnd(3, 7); blob(x, gy(x) - Math.round(s * .5), Math.round(s * 1.3), Math.round(s), ROCK); blob(x + Math.round(s * 1.6), gy(x) - 1, Math.round(s * .7), Math.round(s * .55), ROCK); }
+    for (let i = 0; i < nR; i++){ const x = Math.round(rnd(.05, .95) * W); blob(x, gy(x) - 2, 3, 3, ['#2f6f35', '#3f8a40', '#58a84a', '#78c15c']); }
+    // plants: grass blades and red stems, in clumps
+    blades = []; stems = [];
+    const clumps = Math.max(3, Math.round(W / 34));
+    for (let c = 0; c < clumps; c++){ const cx = (c + rnd(.15, .85)) / clumps * W, n = Math.round(rnd(5, 10)), tall = rnd(.35, .72);
+      for (let i = 0; i < n; i++){ const x = Math.round(cx + rnd(-6, 6)); blades.push({x, h: Math.round((H - 20) * tall * rnd(.55, 1)), ph: rnd(0, 6), col: pick(VALL), front: Math.random() < .35}); } }
+    const nS = Math.max(2, Math.round(W / 70));
+    for (let i = 0; i < nS; i++){ const cx = rnd(.05, .95) * W; for (let k = 0; k < 3; k++) stems.push({x: Math.round(cx + k * 3 - 3), h: Math.round((H - 22) * rnd(.3, .6)), ph: rnd(0, 6)}); }
+    // fish
+    const small = W < 200; fish = [];
+    for (const d of DEFS){ if (small && !SMALL.includes(d.k)) continue; const sp = sprites[d.k]; if (!sp) continue;
+      const n = d.school ? (small ? 3 : d.school) : 1;
+      for (let i = 0; i < n; i++) fish.push(spawn(d, sp, i ? fish[fish.length - i] : null)); }
+    food = []; bubbles = []; hearts = [];
+    if (RM) draw(0);
+  }
+  function spawn(d, sp, lead){ const w = sp.r.width, h = sp.r.height, x = rnd(w, W - w), y = d.bottom ? gy(x) - h / 2 : rnd(16 + h, Math.max(20 + h, H * .62));
+    return {d, sp, w, h, x, y, vx: rnd(-1, 1) * d.sp * .5, vy: 0, tx: x, ty: y, face: Math.random() < .5 ? 1 : -1, ph: rnd(0, 6), tm: 0, lead, off: lead ? [rnd(-30, -18), rnd(-12, 12)] : null, full: 0}; }
+  function newTarget(f){ const m = f.w / 2 + 2; f.tx = rnd(m, W - m); f.ty = f.d.bottom ? gy(f.tx) - f.h / 2 : rnd(10 + f.h / 2, Math.min(H * .7, gy(f.tx) - f.h / 2 - 6)); f.tm = rnd(3, 7); }
+
+  function step(dt){
+    t += dt;
+    for (const q of food){ if (q.y < gy(q.x) - 1){ q.y += q.vy * dt; q.x += Math.sin(t * 2 + q.ph) * dt * 2; } else q.rest += dt; }
+    food = food.filter(q => q.rest < 9 && !q.gone);
+    for (const f of fish){
+      const mouth = f.x + f.face * f.w / 2; let tx = f.tx, ty = f.ty, boost = 1;
+      let best = null, bd = 1e9; if (f.full <= 0) for (const q of food){ const d = Math.hypot(q.x - mouth, q.y - f.y); if (d < bd && d < (f.d.star ? 400 : 120)){ bd = d; best = q; } }
+      if (best){ tx = best.x - f.face * f.w * .35; ty = f.d.bottom ? f.y : best.y; boost = 2.1;
+        if (bd < 4){ best.gone = true; f.full = 2.5; hearts.push({x: mouth, y: f.y - f.h / 2 - 2, a: 0}); for (let i = 0; i < 3; i++) bubbles.push({x: mouth, y: f.y, r: 1, wob: rnd(0, 6)}); } }
+      else if (f.d.star && ptr && performance.now() - ptr.at < 2500){ tx = ptr.x - (ptr.x > f.x ? 14 : -14); ty = Math.min(ptr.y + 4, gy(ptr.x) - f.h); boost = 1.6; }
+      else if (f.lead){ tx = f.lead.x + f.off[0] * f.lead.face; ty = f.lead.y + f.off[1]; boost = 1.25; }
+      else { f.tm -= dt; if (f.tm <= 0 || Math.hypot(f.tx - f.x, f.ty - f.y) < 3) newTarget(f); }
+      f.full -= dt;
+      if (ptr && !f.d.star && performance.now() - ptr.at < 1200){ const dx = f.x - ptr.x, dy = f.y - ptr.y, d = Math.hypot(dx, dy); if (d < 22 && d > .1){ f.vx += dx / d * 40 * dt; f.vy += dy / d * 40 * dt; } }
+      if (!best) for (const o of fish){ if (o === f) continue; const ex = f.x - o.x, ey = f.y - o.y, ed = Math.hypot(ex, ey), room = (f.w + o.w) * .38;
+        if (ed < room && ed > .01){ const push = (room - ed) / room * 26 * dt; f.vx += ex / ed * push; f.vy += ey / ed * push; } }
+      const dx = tx - f.x, dy = ty - f.y, d = Math.hypot(dx, dy) || 1, sp = f.d.sp * boost * Math.min(1, d / 12);
+      const k = Math.min(1, dt * 1.8); f.vx += (dx / d * sp - f.vx) * k; f.vy += (dy / d * sp * .6 - f.vy) * k;
+      f.x += f.vx * dt; f.y += f.vy * dt;
+      const top = 8 + f.h / 2, bot = gy(f.x) - f.h / 2 - (f.d.bottom ? 0 : 3);
+      f.x = Math.max(f.w / 2, Math.min(W - f.w / 2, f.x)); f.y = Math.max(top, Math.min(bot, f.y));
+      if (f.vx > 1.2) f.face = 1; else if (f.vx < -1.2) f.face = -1; }
+    if (Math.random() < dt * (W / 40)) { const x = W * .86 + rnd(-1, 1); bubbles.push({x, y: gy(x) - 2, r: Math.random() < .35 ? 2 : 1, wob: rnd(0, 6)}); }
+    if (Math.random() < dt * 1.2 && blades.length){ const b = pick(blades); bubbles.push({x: b.x, y: gy(b.x) - b.h, r: 1, wob: rnd(0, 6)}); }
+    for (const b of bubbles){ b.y -= (b.r > 1 ? 16 : 12) * dt; b.x += Math.sin(t * 3 + b.wob) * dt * 4; }
+    bubbles = bubbles.filter(b => b.y > surf(b.x, t) + 1);
+    for (const h of hearts) h.a += dt; hearts = hearts.filter(h => h.a < 1.1);
+  }
+  const HEART = ['.##.##.', '#######', '#######', '.#####.', '..###..', '...#...'];
+  function draw(){
+    ctx.clearRect(0, 0, W, H); ctx.drawImage(bg, 0, 0);
+    // light from the surface, drifting slowly
+    ctx.save(); ctx.globalAlpha = .1; ctx.fillStyle = '#ffffff';
+    for (let i = 0; i < 4; i++){ const x = ((i * .29 + t * .006) % 1.2 - .1) * W, w = 10 + i * 4; ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x + w, 0); ctx.lineTo(x + w - H * .45, H); ctx.lineTo(x - H * .45, H); ctx.fill(); }
+    ctx.restore();
+    const plant = front => { for (const b of blades){ if (b.front !== front) continue; const g = gy(b.x);
+        for (let y = 0; y < b.h; y++){ const u = y / b.h, x = b.x + Math.round(Math.sin(t * 1.1 + b.ph + y * .07) * u * u * 4); ctx.fillStyle = u > .8 ? VALL[3] : b.col; ctx.fillRect(x, g - y, 1, 1); } } };
+    for (const s of stems){ const g = gy(s.x);
+      for (let y = 0; y < s.h; y++){ const u = y / s.h, x = s.x + Math.round(Math.sin(t * .9 + s.ph + y * .05) * u * u * 2.5); ctx.fillStyle = ROT[0]; ctx.fillRect(x, g - y, 1, 1);
+        if (y % 3 === 1){ ctx.fillStyle = ROT[u > .7 ? 2 : 1]; ctx.fillRect(x - 1, g - y, 1, 1); ctx.fillRect(x + 1, g - y, 1, 1); } } }
+    plant(false);
+    for (const f of fish){ const bob = f.d.bottom ? 0 : Math.round(Math.sin(t * 2.2 + f.ph) * .8), img = (f.face === 1) !== !!f.d.left ? f.sp.r : f.sp.l;
+      ctx.drawImage(img, Math.round(f.x - f.w / 2), Math.round(f.y - f.h / 2 + bob)); }
+    plant(true);
+    for (const q of food){ ctx.globalAlpha = q.rest > 7 ? Math.max(0, (9 - q.rest) / 2) : 1; ctx.fillStyle = q.ph > 3 ? '#d08a44' : '#9a5e30'; ctx.fillRect(Math.round(q.x), Math.round(q.y), 1, 1); } ctx.globalAlpha = 1;
+    for (const b of bubbles){ const x = Math.round(b.x), y = Math.round(b.y); ctx.fillStyle = 'rgba(255,255,255,.9)';
+      if (b.r === 1) ctx.fillRect(x, y, 1, 1); else { ctx.fillRect(x - 1, y - 2, 2, 1); ctx.fillRect(x - 1, y + 1, 2, 1); ctx.fillRect(x - 2, y - 1, 1, 2); ctx.fillRect(x + 1, y - 1, 1, 2); } }
+    for (const h of hearts){ ctx.globalAlpha = Math.max(0, 1 - h.a); ctx.fillStyle = '#ff6f8e'; const y0 = Math.round(h.y - h.a * 10 - 6), x0 = Math.round(h.x - 3);
+      HEART.forEach((row, j) => [...row].forEach((c, i) => c === '#' && ctx.fillRect(x0 + i, y0 + j, 1, 1))); } ctx.globalAlpha = 1;
+    // the surface: air above, a bright line on the wave
+    for (let x = 0; x < W; x++){ const s = surf(x, t); ctx.clearRect(x, 0, 1, s); ctx.fillStyle = 'rgba(255,255,255,.95)'; ctx.fillRect(x, s, 1, 1); if ((x + Math.round(t * 6)) % 9 < 4){ ctx.fillStyle = 'rgba(255,255,255,.45)'; ctx.fillRect(x, s + 1, 1, 1); } }
+  }
+  function frame(now){ if (!running) return; const dt = Math.min(.05, (now - (last || now)) / 1000); last = now; step(dt); draw(); requestAnimationFrame(frame); }
+  function go(on){ if (RM) return; if (on && !running){ running = true; last = 0; requestAnimationFrame(frame); } else if (!on) running = false; }
+  const toArt = e => { const r = cv.getBoundingClientRect(); return {x: (e.clientX - r.left) / P, y: (e.clientY - r.top) / P}; };
+  wrap.addEventListener('pointermove', e => { if (e.pointerType === 'mouse') ptr = Object.assign(toArt(e), {at: performance.now()}); });
+  wrap.addEventListener('pointerleave', () => { ptr = null; });
+  wrap.addEventListener('pointerdown', e => { if (e.target !== cv || RM) return; const p = toArt(e); if (p.y < surf(p.x, t) + 2) return;
+    for (let i = 0; i < 5; i++) food.push({x: p.x + rnd(-4, 4), y: Math.max(surf(p.x, t) + 2, p.y + rnd(-3, 3)), vy: rnd(5, 9), ph: rnd(0, 6), rest: 0});
+    ptr = Object.assign(p, {at: performance.now()});
+    if (!fed){ fed = true; wrap.classList.add('fed'); } });
+  Promise.all([load('img/props.png'), load('img/fin.png'), ...DEFS.filter(d => d.src && d.k !== 'fin').map(d => load(d.src))]).then(([props, fin, ...rest]) => {
+    let j = 0;
+    for (const d of DEFS){ let c = null;
+      if (d.cell && props) c = art(props, d.cell[0] * 240, d.cell[1] * 240, 240, 240, 10);
+      else if (d.k === 'fin' && fin) c = art(fin, 0, 0, fin.width, fin.height, d.b);
+      else if (d.src){ const im = rest[j++]; if (im) c = art(im, 0, 0, im.width, im.height, d.b); }
+      if (c){ c = scaled(c, d.s || 1); sprites[d.k] = {r: c, l: flipped(c)}; } }
+    layout(); cv.classList.add('on');
+    if (RM){ step(0); draw(); return; }
+    new IntersectionObserver(es => go(es[0].isIntersecting && !document.hidden)).observe(wrap);
+    document.addEventListener('visibilitychange', () => go(!document.hidden && wrap.getBoundingClientRect().bottom > 0));
+    let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(layout, 150); });
+  });
+})();
+</script>
 </body>
 </html>
