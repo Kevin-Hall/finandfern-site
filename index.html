@@ -72,13 +72,16 @@ a{color:#141216}a:hover{color:#c4652f}
   @keyframes ffdriftc{from{transform:translateY(90px)}to{transform:translateY(0)}}
   .ffdriftc{animation:ffdriftc linear both;animation-timeline:view();animation-range:entry 0% cover 60%}
 }
-/* the hero den: a shelf from the game where the tank keeps changing, drawn crisp */
-.den{position:relative;z-index:1;width:min(780px,100%);aspect-ratio:16/9;flex:none;border-radius:34px;overflow:hidden;background:#2a2227;box-shadow:0 30px 80px -20px rgba(42,26,20,.45),0 0 0 1px rgba(20,18,22,.06)}
+/* the hero shelf: a shelf from the den, the tank on it turning into the next tank.
+   It is filmed on white and multiplied into the page, so the white disappears and the page shows through. */
+#top{z-index:auto!important}
+.den{position:relative;width:min(760px,100%);aspect-ratio:1120/584;flex:none;margin-bottom:-6px;mix-blend-mode:multiply}
 .den img,.den canvas,.den video{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;image-rendering:crisp-edges}
 .den video{opacity:0;pointer-events:none}
 .den canvas{opacity:0;transition:opacity .6s ease}
 .den.live canvas{opacity:1}
-@media (max-width: 600px){.den{border-radius:22px;width:calc(100% + 16px)}}
+.den.live img{opacity:0;transition:opacity .6s ease .2s}
+@media (max-width: 600px){.den{width:calc(100% + 24px)}}
 /* reviews: two rows drift in opposite directions; hover, focus or a finger on a card stops them */
 .rvwrap{width:100%;display:flex;flex-direction:column;gap:16px;margin-top:22px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
 .rvtrack{overflow:hidden;padding:6px 0 14px}
@@ -142,7 +145,7 @@ a{color:#141216}a:hover{color:#c4652f}
   <main>
   <section id="top" style="position: relative; z-index: 1; padding: 40px 24px 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 26px">
     <div class="den" id="tk">
-      <img src="img/den-hero.jpg" alt="A tank on a shelf in the den, turning into a new kind of tank every few seconds, with the garden and the fishing pond outside the window" width="640" height="360">
+      <img src="img/den-hero.jpg" alt="A tank on a wooden shelf that turns into a new kind of tank every few seconds: Jungle stream, Riparium, Diamond palace, Lotus basin and Terrace cube" width="1120" height="584">
       <video id="tkv" src="img/den-hero.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1"></video>
       <canvas id="tkc" aria-hidden="true"></canvas>
     </div>
