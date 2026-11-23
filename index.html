@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fin &amp; Fern: a little world, under water</title>
 <meta name="description" content="Scape tanks, grow plants, catch rare fish and breed new ones. A cozy pixel aquarium for iPhone and iPad.">
-<meta name="theme-color" content="#f4f4f6">
+<meta name="theme-color" content="#e3f1ed">
 <meta name="apple-itunes-app" content="app-id=6826121169">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Fin &amp; Fern: a little world, under water">
@@ -16,14 +16,19 @@
 <link rel="canonical" href="https://finandfern.app/">
 <link rel="icon" type="image/png" href="img/icon.png">
 <link rel="apple-touch-icon" href="img/icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&amp;family=Pixelify+Sans:wght@500;600&amp;display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/nunito-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face{font-family:Nunito;font-style:normal;font-weight:600;font-display:swap;src:url(fonts/nunito-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:Nunito;font-style:normal;font-weight:700;font-display:swap;src:url(fonts/nunito-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:Nunito;font-style:normal;font-weight:800;font-display:swap;src:url(fonts/nunito-latin-800-normal.woff2) format('woff2')}
+@font-face{font-family:Nunito;font-style:normal;font-weight:900;font-display:swap;src:url(fonts/nunito-latin-900-normal.woff2) format('woff2')}
+@font-face{font-family:'Pixelify Sans';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/pixelify-sans-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Pixelify Sans';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/pixelify-sans-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Pixelify Sans';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/pixelify-sans-latin-700-normal.woff2) format('woff2')}
 *{-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:#f4f4f6}
-a{color:#141216}a:hover{color:#c4652f}
+body{margin:0;background:#e3f1ed}
+a{color:#3b2a3d}a:hover{color:#c4652f}
 .px{image-rendering:pixelated}
 @keyframes ffbob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-12px) rotate(3deg)}}
 .ffbob{animation:ffbob 4.4s ease-in-out infinite}
@@ -38,7 +43,7 @@ a{color:#141216}a:hover{color:#c4652f}
   .ffmoon{animation:ffmoon linear both;animation-timeline:scroll(root)}
   @keyframes ffstar{0%,70%{opacity:0}100%{opacity:.75}}
   .ffstar{animation:ffstar linear both;animation-timeline:scroll(root)}
-  @keyframes ffsky{0%{background-color:#f4f4f6}45%{background-color:#f7f2ea}75%{background-color:#f5e9e6}100%{background-color:#e7e3f1}}
+  @keyframes ffsky{0%{background-color:#e3f1ed}45%{background-color:#f3e8d0}75%{background-color:#f6decd}100%{background-color:#cfdfe5}}
   .ffsky{animation:ffsky linear both;animation-timeline:scroll(root)}
   @keyframes ffph1{0%,22%{opacity:1}28%,100%{opacity:0}}
   @keyframes ffph2{0%,22%{opacity:0}28%,52%{opacity:1}58%,100%{opacity:0}}
@@ -48,9 +53,6 @@ a{color:#141216}a:hover{color:#c4652f}
   .ffph2{opacity:0;animation:ffph2 linear both;animation-timeline:scroll(root)}
   .ffph3{opacity:0;animation:ffph3 linear both;animation-timeline:scroll(root)}
   .ffph4{opacity:0;animation:ffph4 linear both;animation-timeline:scroll(root)}
-  @keyframes ffrise{from{opacity:0;transform:translateY(70px)}to{opacity:1;transform:none}}
-  .ffrise{animation:ffrise linear both;animation-timeline:view();animation-range:entry 0% cover 28%}
-  .ffrise2{animation:ffrise linear both;animation-timeline:view();animation-range:entry 10% cover 38%}
   @keyframes fffanl{from{transform:translate(40px,30px) rotate(-3deg)}to{transform:translate(-30px,150px) rotate(-12deg)}}
   @keyframes fffanr{from{transform:translate(-40px,30px) rotate(3deg)}to{transform:translate(30px,150px) rotate(12deg)}}
   @keyframes fffanc{from{transform:translateY(0)}to{transform:translateY(-60px)}}
@@ -63,101 +65,134 @@ a{color:#141216}a:hover{color:#c4652f}
   .ffrowb{animation:ffrowb linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
   @keyframes ffup{from{transform:translateY(160px)}to{transform:translateY(0)}}
   .ffup{animation:ffup linear both;animation-timeline:view();animation-range:entry 0% cover 55%}
-  @keyframes ffgrow{from{transform:scale(.86);border-radius:72px}to{transform:scale(1);border-radius:44px}}
-  .ffgrow{animation:ffgrow linear both;animation-timeline:view();animation-range:entry 0% cover 40%}
   @keyframes ffpar{from{translate:0 var(--d,80px)}to{translate:0 calc(var(--d,80px) * -1)}}
   .ffpar{animation:ffpar linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
   @keyframes ffdrift{from{transform:translateY(0)}to{transform:translateY(-120px)}}
   .ffdrift{animation:ffdrift linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
-  @keyframes ffdriftc{from{transform:translateY(90px)}to{transform:translateY(0)}}
-  .ffdriftc{animation:ffdriftc linear both;animation-timeline:view();animation-range:entry 0% cover 60%}
 }
 /* reviews: two rows drift in opposite directions; hover, focus or a finger on a card stops them */
 .rvwrap{width:100%;display:flex;flex-direction:column;gap:16px;margin-top:22px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
-.rvtrack{overflow:hidden;padding:6px 0 14px}
+.rvtrack{overflow:hidden;padding:8px 0 16px}
 .rvrow{display:flex;gap:16px;width:max-content;animation:rvgo 64s linear infinite}
 .rvrow.rvb{animation-duration:72s;animation-direction:reverse}
 .rvcopy{display:contents}
 .rvwrap:hover .rvrow,.rvwrap:focus-within .rvrow,.rvwrap.hold .rvrow{animation-play-state:paused}
 @keyframes rvgo{to{transform:translateX(calc(-50% - 8px))}}
-.rvc{flex:none;width:300px;min-height:212px;box-sizing:border-box;display:flex;flex-direction:column;align-items:flex-start;gap:9px;padding:22px 22px 20px;border:0;border-radius:28px;background:#ffffff;color:#141216;font:inherit;text-align:left;cursor:pointer;box-shadow:0 10px 30px rgba(20,18,22,.06);transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s}
-.rvc:hover{transform:translateY(-6px) rotate(-.6deg);box-shadow:0 22px 44px rgba(20,18,22,.12)}
-.rvc:active{transform:scale(.97)}
+.rvc{flex:none;width:300px;min-height:212px;box-sizing:border-box;display:flex;flex-direction:column;align-items:flex-start;gap:9px;padding:20px 20px 18px;border:2.5px solid #3b2a3d;border-radius:20px;background:#f6efd9;color:#3b2a3d;font:inherit;text-align:left;cursor:pointer;box-shadow:0 5px 0 #3b2a3d;transition:transform .12s,box-shadow .12s}
+.rvc:hover{transform:translateY(-3px);box-shadow:0 8px 0 #3b2a3d}
+.rvc:active{transform:translateY(4px);box-shadow:0 1px 0 #3b2a3d}
 .rvc:focus-visible{outline:3px solid #c4652f;outline-offset:3px}
 .rvc b{font-size:18px;font-weight:900;letter-spacing:-0.02em;line-height:1.2}
-.rvx{font-size:15px;font-weight:700;line-height:1.5;color:#6b6670;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
-.rvwho{margin-top:auto;display:flex;gap:6px;align-items:center;font-size:13px;font-weight:900;color:#8a8490}
+.rvx{font-size:15px;font-weight:600;line-height:1.5;color:#6f5d71;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.rvwho{margin-top:auto;display:flex;gap:6px;align-items:center;font-size:13px;font-weight:900;color:#8d7b8e}
 .rvst{display:inline-flex;gap:2px}
-.rvst svg,#rvds svg{width:17px;height:17px;fill:#ffb84d}
-.rvst svg.off,#rvds svg.off{fill:#e4e1e8}
-#rvd{width:min(520px,calc(100vw - 32px));box-sizing:border-box;border:0;border-radius:32px;padding:30px 28px 26px;background:#ffffff;color:#141216;font-family:Nunito,ui-rounded,'SF Pro Rounded',system-ui,sans-serif;box-shadow:0 40px 100px rgba(20,18,22,.3)}
+.rvst svg,#rvds svg{width:17px;height:17px;fill:#e3a21c}
+.rvst svg.off,#rvds svg.off{fill:#ddd0b0}
+#rvd{width:min(520px,calc(100vw - 32px));box-sizing:border-box;border:3px solid #3b2a3d;border-radius:26px;padding:28px 26px 26px;background:#f6efd9;color:#3b2a3d;font-family:Nunito,ui-rounded,'SF Pro Rounded',system-ui,sans-serif;box-shadow:0 40px 100px rgba(59,42,61,.3)}
 #rvd[open]{animation:rvpop .32s cubic-bezier(.2,.9,.3,1.2)}
-#rvd::backdrop{background:rgba(20,18,22,.36);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+#rvd::backdrop{background:rgba(59,42,61,.36);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 @keyframes rvpop{from{opacity:0;transform:translateY(24px) scale(.94)}to{opacity:1;transform:none}}
 #rvds{display:inline-flex;gap:3px}
 #rvds svg{width:22px;height:22px}
 #rvdt{margin:12px 0 0;font-size:26px;font-weight:900;letter-spacing:-0.03em;line-height:1.15;padding-right:36px}
-#rvdb{margin:12px 0 0;font-size:16px;font-weight:700;line-height:1.6;color:#4b4650;white-space:pre-line;max-height:min(46vh,420px);overflow:auto}
-.rvdfoot{display:flex;justify-content:space-between;gap:12px;margin-top:18px;font-size:13px;font-weight:900;color:#8a8490}
-.rvdcta{display:flex;align-items:center;justify-content:center;height:50px;margin-top:20px;border-radius:999px;background:#141216;color:#ffffff!important;text-decoration:none;font-weight:900;font-size:15px}
-.rvclose{position:absolute;top:18px;right:18px;width:36px;height:36px;border:0;border-radius:18px;background:#f1eff3;color:#141216;display:grid;place-items:center;cursor:pointer}
+#rvdb{margin:12px 0 0;font-size:16px;font-weight:600;line-height:1.6;color:#58465a;white-space:pre-line;max-height:min(46vh,420px);overflow:auto}
+.rvdfoot{display:flex;justify-content:space-between;gap:12px;margin-top:18px;font-size:13px;font-weight:900;color:#8d7b8e}
+.rvdcta{margin-top:20px;width:100%;box-sizing:border-box;justify-content:center}
+.rvclose{position:absolute;top:18px;right:18px;width:36px;height:36px;border:2px solid #3b2a3d;border-radius:10px;background:#ebe1c6;color:#3b2a3d;display:grid;place-items:center;cursor:pointer}
 @media (max-width: 600px){.rvc{width:262px;min-height:200px;padding:20px 20px 18px}.rvwrap{-webkit-mask-image:none;mask-image:none}}
 @media (prefers-reduced-motion: reduce){.rvrow{animation:none}.rvtrack{overflow-x:auto;scroll-snap-type:x mandatory;padding-left:24px;padding-right:24px}.rvc{scroll-snap-align:center}.rvcopy{display:none}#rvd[open]{animation:none}.rvc:hover{transform:none}}
-@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.ffbob,.ffsun,.ffmoon,.ffstar,.ffsky,.ffph1,.ffph2,.ffph3,.ffph4,.ffrise,.ffrise2,.fffanl,.fffanr,.fffanc,.ffrowa,.ffrowb,.ffup,.ffgrow,.ffdrift,.ffdriftc,.ffpar{animation:none}}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.ffbob,.ffsun,.ffmoon,.ffstar,.ffsky,.ffph1,.ffph2,.ffph3,.ffph4,.fffanl,.fffanr,.fffanc,.ffrowa,.ffrowb,.ffup,.ffdrift,.ffpar{animation:none}}
+.pxd{width:4px;height:4px;background:currentColor;opacity:.5}@media (max-width: 600px){.pxd{display:none}}
+/* the game's button: moss green, ink outline, and a hard base edge it sinks onto when pressed */
+.gbtn{display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 24px;border-radius:16px;background:#458237;color:#ffffff!important;border:3px solid #3b2a3d;box-shadow:0 5px 0 #3b2a3d;text-decoration:none;font-weight:900;font-size:17px;transition:transform .08s,box-shadow .08s,background .15s}
+.gbtn:hover{background:#4d8f3e}.gbtn:active{transform:translateY(4px);box-shadow:0 1px 0 #3b2a3d}
+.gbtn:focus-visible{outline:3px solid #f08a4b;outline-offset:3px}
+.gbtn.sm{height:40px;padding:0 15px;border-radius:12px;border-width:2.5px;box-shadow:0 4px 0 #3b2a3d;font-size:14px}.gbtn.sm:active{transform:translateY(3px)}
+.gbtn.paper{background:#f6efd9;color:#3b2a3d!important;border-color:#0d1f24;box-shadow:0 5px 0 #0d1f24}.gbtn.paper:hover{background:#fff8e4}
+.pcard{background:#f6efd9;color:#3b2a3d;border:2.5px solid #3b2a3d;box-shadow:0 5px 0 #3b2a3d;transition:transform .12s,box-shadow .12s}
+.pcard:hover{color:#3b2a3d;transform:translateY(-3px);box-shadow:0 8px 0 #3b2a3d}.pcard:active{transform:translateY(4px);box-shadow:0 1px 0 #3b2a3d}
+/* the one orchestrated moment: the page opens like the game does */
+@media (prefers-reduced-motion: no-preference){
+  @keyframes hpop{0%{opacity:0;transform:translateY(14px) scale(.96)}60%{opacity:1}100%{opacity:1;transform:none}}
+  @keyframes hswim{0%{opacity:0;transform:translateX(-46vw) rotate(-6deg)}18%{opacity:1}70%{transform:translateX(14px) rotate(4deg)}100%{transform:none}}
+  @keyframes hrise{0%{opacity:0;transform:translateY(90px)}100%{opacity:1;transform:none}}
+  .hin{animation:hpop .5s cubic-bezier(.2,.9,.3,1.3) both;animation-delay:.25s}.hin.h1{animation-delay:.37s}.hin.h2{animation-delay:.49s}.hin.h3{animation-delay:.6s}
+  .hfin{animation:hswim 1s cubic-bezier(.2,.75,.25,1) both,ffbob 4.4s ease-in-out 1s infinite}
+  .hup{animation:hrise .7s cubic-bezier(.2,.85,.25,1.08) both;animation-delay:.62s}.hup.h5{animation-delay:.76s}.hup.h6{animation-delay:.86s}
+}
+/* backgrounds: the sky haze is a dither mask tinted by the scroll sky; clouds drift across as the day goes by */
+.dith{position:relative;isolation:isolate}.dith::before{content:"";position:absolute;inset:0;z-index:-1;image-rendering:pixelated;border-radius:inherit}
+.dreef::before{background:url(img/reef-band.png) top left / 16px 600px repeat-x}.ddusk::before{background:url(img/dusk-band.png) bottom left / 16px 600px repeat-x}
+.skyband{position:absolute;left:0;right:0;top:0;height:336px;image-rendering:pixelated;background:#9fd6e2;-webkit-mask:url(img/sky-band.png) top left / 16px 336px repeat-x;mask:url(img/sky-band.png) top left / 16px 336px repeat-x}
+.cloud{position:absolute;height:auto;opacity:.95}
+.cloud.c1{left:9%;top:96px;width:220px}.cloud.c2{left:66%;top:150px;width:150px}.cloud.c3{left:84%;top:64px;width:176px;opacity:.8}
+@supports (animation-timeline: scroll()){
+  @keyframes skyband{0%{background-color:#9fd6e2}22%{background-color:#cfe6dc}45%{background-color:#ecd49a}75%{background-color:#f0a98c}100%{background-color:#7fa6b6}}
+  .skyband{animation:skyband linear both;animation-timeline:scroll(root)}
+  @keyframes cloud{0%{translate:0 0;opacity:.95}12%{opacity:.85}24%{translate:7vw 0;opacity:0}100%{translate:7vw 0;opacity:0}}
+  .cloud{animation:cloud linear both;animation-timeline:scroll(root)}.cloud.c2{animation-name:cloud2}
+  @keyframes cloud2{0%{translate:0 0;opacity:.95}12%{opacity:.85}24%{translate:-9vw 0;opacity:0}100%{translate:-9vw 0;opacity:0}}
+}
+@media (max-width: 860px){.cloud.c1{left:-6%;top:84px;width:150px}.cloud.c2{left:70%;top:120px;width:110px}.cloud.c3{display:none}}
+@media (prefers-reduced-motion: reduce){.skyband,.cloud{animation:none}}
+/* one shelf from the den closes the page: lit plank, darker face, warm light beneath */
+.shelf{position:relative;z-index:1;max-width:1160px;margin:34px auto 0;height:18px;border-radius:5px;background:linear-gradient(#b98656 0 3px,#8f6243 3px 9px,#6c4731 9px 18px);box-shadow:0 2px 0 #4b3022,0 14px 26px -6px rgba(255,190,110,.55)}
+@media (max-width: 1200px){.shelf{margin-left:16px;margin-right:16px}}
 </style>
 </head>
 <body>
-<div class="ffsky" style="background: #f4f4f6; color: #141216; font-family: Nunito, ui-rounded, 'SF Pro Rounded', system-ui, sans-serif; overflow-x: clip; position: relative">
+<div class="ffsky" style="background: #e3f1ed; color: #3b2a3d; font-family: Nunito, ui-rounded, 'SF Pro Rounded', system-ui, sans-serif; overflow-x: clip; position: relative">
 
   <div aria-hidden="true" style="position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden">
-    <span class="ffstar" style="position: absolute; left: 8%; top: 10%; width: 6px; height: 6px; background: #b9b0d6"></span><span class="ffstar" style="position: absolute; left: 14%; top: 22%; width: 4px; height: 4px; background: #b9b0d6"></span><span class="ffstar" style="position: absolute; left: 22%; top: 6%; width: 4px; height: 4px; background: #b9b0d6"></span><span class="ffstar" style="position: absolute; left: 31%; top: 15%; width: 6px; height: 6px; background: #b9b0d6"></span><span class="ffstar" style="position: absolute; left: 38%; top: 4%; width: 4px; height: 4px; background: #b9b0d6"></span><span class="ffstar" style="position: absolute; left: 47%; top: 12%; width: 4px; height: 4px; background: #b9b0d6"></span><span class="ffstar" style="position: absolute; left: 56%; top: 7%; width: 6px; height: 6px; background: #b9b0d6"></span><span class="ffstar" style="position: absolute; left: 63%; top: 19%; width: 4px; height: 4px; background: #b9b0d6"></span><span class="ffstar" style="position: absolute; left: 71%; top: 5%; width: 4px; height: 4px; background: #b9b0d6"></span><span class="ffstar" style="position: absolute; left: 79%; top: 13%; width: 6px; height: 6px; background: #b9b0d6"></span><span class="ffstar" style="position: absolute; left: 86%; top: 8%; width: 4px; height: 4px; background: #b9b0d6"></span><span class="ffstar" style="position: absolute; left: 93%; top: 18%; width: 4px; height: 4px; background: #b9b0d6"></span><span class="ffstar" style="position: absolute; left: 18%; top: 34%; width: 6px; height: 6px; background: #b9b0d6"></span><span class="ffstar" style="position: absolute; left: 52%; top: 28%; width: 4px; height: 4px; background: #b9b0d6"></span><span class="ffstar" style="position: absolute; left: 74%; top: 31%; width: 4px; height: 4px; background: #b9b0d6"></span><span class="ffstar" style="position: absolute; left: 90%; top: 40%; width: 6px; height: 6px; background: #b9b0d6"></span>
+    <span class="skyband"></span><img class="px cloud c1" src="img/cloud-a.png" alt="" width="44" height="16"><img class="px cloud c2" src="img/cloud-b.png" alt="" width="30" height="11"><img class="px cloud c3" src="img/cloud-a.png" alt="" width="44" height="16">
+    <span class="ffstar" style="position: absolute; left: 8%; top: 10%; width: 6px; height: 6px; background: #6f98a6"></span><span class="ffstar" style="position: absolute; left: 14%; top: 22%; width: 4px; height: 4px; background: #6f98a6"></span><span class="ffstar" style="position: absolute; left: 22%; top: 6%; width: 4px; height: 4px; background: #6f98a6"></span><span class="ffstar" style="position: absolute; left: 31%; top: 15%; width: 6px; height: 6px; background: #6f98a6"></span><span class="ffstar" style="position: absolute; left: 38%; top: 4%; width: 4px; height: 4px; background: #6f98a6"></span><span class="ffstar" style="position: absolute; left: 47%; top: 12%; width: 4px; height: 4px; background: #6f98a6"></span><span class="ffstar" style="position: absolute; left: 56%; top: 7%; width: 6px; height: 6px; background: #6f98a6"></span><span class="ffstar" style="position: absolute; left: 63%; top: 19%; width: 4px; height: 4px; background: #6f98a6"></span><span class="ffstar" style="position: absolute; left: 71%; top: 5%; width: 4px; height: 4px; background: #6f98a6"></span><span class="ffstar" style="position: absolute; left: 79%; top: 13%; width: 6px; height: 6px; background: #6f98a6"></span><span class="ffstar" style="position: absolute; left: 86%; top: 8%; width: 4px; height: 4px; background: #6f98a6"></span><span class="ffstar" style="position: absolute; left: 93%; top: 18%; width: 4px; height: 4px; background: #6f98a6"></span><span class="ffstar" style="position: absolute; left: 18%; top: 34%; width: 6px; height: 6px; background: #6f98a6"></span><span class="ffstar" style="position: absolute; left: 52%; top: 28%; width: 4px; height: 4px; background: #6f98a6"></span><span class="ffstar" style="position: absolute; left: 74%; top: 31%; width: 4px; height: 4px; background: #6f98a6"></span><span class="ffstar" style="position: absolute; left: 90%; top: 40%; width: 6px; height: 6px; background: #6f98a6"></span>
     <span class="ffsun" style="position: absolute; left: 6%; top: 24%; width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 50%; background: #ffd27a; box-shadow: 0 0 90px 40px rgba(255,205,120,.32)"></span>
     <span class="ffmoon" style="position: absolute; left: 12%; top: 72%; width: 84px; height: 84px; margin: -42px 0 0 -42px; border-radius: 50%; box-shadow: inset -22px 8px 0 0 #e7c46e; opacity: 0"></span>
   </div>
   <div class="ffdial" aria-hidden="true" style="position: fixed; left: 24px; bottom: 24px; z-index: 15; height: 40px; width: 150px; pointer-events: none">
-    <span class="ffph1" style="position: absolute; inset: 0; display: inline-flex; align-items: center; gap: 8px; padding: 0 14px; border-radius: 999px; background: #ffffff; box-shadow: 0 6px 20px rgba(20,18,22,.08); font-size: 13px; font-weight: 900; color: #141216; width: max-content"><span style="width: 10px; height: 10px; border-radius: 5px; background: #ffd27a"></span>Morning</span>
-    <span class="ffph2" style="position: absolute; inset: 0; display: inline-flex; align-items: center; gap: 8px; padding: 0 14px; border-radius: 999px; background: #ffffff; box-shadow: 0 6px 20px rgba(20,18,22,.08); font-size: 13px; font-weight: 900; color: #141216; width: max-content"><span style="width: 10px; height: 10px; border-radius: 5px; background: #ffb35c"></span>Afternoon</span>
-    <span class="ffph3" style="position: absolute; inset: 0; display: inline-flex; align-items: center; gap: 8px; padding: 0 14px; border-radius: 999px; background: #ffffff; box-shadow: 0 6px 20px rgba(20,18,22,.08); font-size: 13px; font-weight: 900; color: #141216; width: max-content"><span style="width: 10px; height: 10px; border-radius: 5px; background: #ff7a4c"></span>Dusk</span>
-    <span class="ffph4" style="position: absolute; inset: 0; display: inline-flex; align-items: center; gap: 8px; padding: 0 14px; border-radius: 999px; background: #ffffff; box-shadow: 0 6px 20px rgba(20,18,22,.08); font-size: 13px; font-weight: 900; color: #141216; width: max-content"><span style="width: 10px; height: 10px; border-radius: 5px; background: #8f84c9"></span>Night</span>
+    <span class="ffph1" style="position: absolute; inset: 0; display: inline-flex; align-items: center; gap: 8px; padding: 0 14px; border-radius: 999px; background: #f6efd9; box-shadow: 0 6px 20px rgba(59,42,61,.08); font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 15px; font-weight: 600; color: #3b2a3d; width: max-content"><span style="width: 10px; height: 10px; border-radius: 5px; background: #ffd27a"></span>Morning</span>
+    <span class="ffph2" style="position: absolute; inset: 0; display: inline-flex; align-items: center; gap: 8px; padding: 0 14px; border-radius: 999px; background: #f6efd9; box-shadow: 0 6px 20px rgba(59,42,61,.08); font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 15px; font-weight: 600; color: #3b2a3d; width: max-content"><span style="width: 10px; height: 10px; border-radius: 5px; background: #ffb35c"></span>Afternoon</span>
+    <span class="ffph3" style="position: absolute; inset: 0; display: inline-flex; align-items: center; gap: 8px; padding: 0 14px; border-radius: 999px; background: #f6efd9; box-shadow: 0 6px 20px rgba(59,42,61,.08); font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 15px; font-weight: 600; color: #3b2a3d; width: max-content"><span style="width: 10px; height: 10px; border-radius: 5px; background: #ff7a4c"></span>Dusk</span>
+    <span class="ffph4" style="position: absolute; inset: 0; display: inline-flex; align-items: center; gap: 8px; padding: 0 14px; border-radius: 999px; background: #f6efd9; box-shadow: 0 6px 20px rgba(59,42,61,.08); font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 15px; font-weight: 600; color: #3b2a3d; width: max-content"><span style="width: 10px; height: 10px; border-radius: 5px; background: #5f8a9a"></span>Night</span>
   </div>
 
-  <header style="position: sticky; top: 0; z-index: 20; background: rgba(244,244,246,.7); backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px)">
+  <header style="position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.3); backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px)">
     <div style="max-width: 1160px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
-      <a href="#top" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #141216">
+      <a href="#top" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #3b2a3d">
         <img src="img/icon.png" alt="" width="34" height="34" style="width: 34px; height: 34px; border-radius: 9px">
         <span style="font-weight: 900; font-size: 19px; letter-spacing: -0.02em">Fin <span style="color: #e0743a">&amp;</span> Fern</span>
       </a>
-      <span class="ffdial" style="font-size: 13px; font-weight: 800; color: #6b6670">71 wild species and counting</span>
-      <a href="https://apps.apple.com/app/id6826121169" style="display: inline-flex; align-items: center; height: 40px; padding: 0 18px; border-radius: 999px; background: #141216; color: #ffffff; text-decoration: none; font-weight: 900; font-size: 14px">Get the app</a>
+      <span class="ffdial" style="font-size: 13px; font-weight: 800; color: #6f5d71">71 wild species and counting</span>
+      <a href="https://apps.apple.com/app/id6826121169" class="gbtn sm">Get the app</a>
     </div>
   </header>
 
   <main>
   <section id="top" style="position: relative; z-index: 1; padding: 72px 24px 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 26px">
-    <img class="px ffbob" src="img/fin.png" alt="Fin, the pixel goldfish" style="width: 172px; height: 100px">
-    <h1 style="margin: 0; font-weight: 900; line-height: .92; letter-spacing: -0.05em; font-size: clamp(52px, 9.5vw, 128px)">A little world,<br>under water.</h1>
-    <p style="margin: 0; max-width: 520px; font-size: clamp(17px, 1.8vw, 20px); font-weight: 700; line-height: 1.5; color: #6b6670">Scape tanks, grow plants, catch rare fish and breed new ones. A cozy pixel aquarium for iPhone and iPad.</p>
-    <a href="https://apps.apple.com/app/id6826121169" style="display: inline-flex; align-items: center; gap: 10px; height: 54px; padding: 0 26px; border-radius: 999px; background: #141216; color: #ffffff; text-decoration: none; font-weight: 900; font-size: 16px">
+    <img class="px ffbob hfin" src="img/fin.png" alt="Fin, the pixel goldfish" style="width: 172px; height: 100px">
+    <h1 class="hin" style="margin: 0; font-weight: 900; line-height: .97; letter-spacing: -0.028em; font-size: clamp(52px, 9.5vw, 128px)">A little world,<br>under water.</h1>
+    <p class="hin h1" style="margin: 0; max-width: 520px; font-size: clamp(17px, 1.8vw, 20px); font-weight: 600; line-height: 1.5; color: #6f5d71">Scape tanks, grow plants, catch rare fish and breed new ones. A cozy pixel aquarium for iPhone and iPad.</p>
+    <a href="https://apps.apple.com/app/id6826121169" class="gbtn hin h2">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"></path></svg>
       Download on the App Store
     </a>
-    <div style="display: flex; gap: 10px 22px; flex-wrap: wrap; justify-content: center; font-size: 13px; font-weight: 800; color: #8a8490">
-      <span>Free to try</span><span aria-hidden="true">·</span><span>Made for iPhone Duo</span><span aria-hidden="true">·</span><span>9 languages</span><span aria-hidden="true">·</span><span>No forced ads</span>
+    <div class="hin h3" style="display: flex; gap: 10px 22px; flex-wrap: wrap; justify-content: center; align-items: center; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 16px; font-weight: 500; color: #6f5d71">
+      <span>Free to try</span><i class="pxd"></i><span>Made for iPhone Duo</span><i class="pxd"></i><span>9 languages</span><i class="pxd"></i><span>No forced ads</span>
     </div>
 
     <div style="display: flex; justify-content: center; align-items: flex-start; margin-top: 56px; height: 640px; width: 100%; max-width: 1000px; overflow: visible">
       <div class="fffan-side fffanl" style="width: 260px; flex-shrink: 0; margin-right: -36px; margin-top: 80px">
-        <div style="border-radius: 44px; padding: 8px; background: #141216; box-shadow: 0 30px 70px rgba(20,18,22,.16)">
+        <div class="hup h5" style="border-radius: 44px; padding: 8px; background: #241a26; box-shadow: 0 30px 70px rgba(59,42,61,.16)">
           <img src="img/greenhouse.jpg" alt="The Plant Farm greenhouse" style="display: block; width: 100%; height: 500px; object-fit: cover; object-position: top; border-radius: 37px">
         </div>
       </div>
       <div class="fffanc" style="width: 300px; flex-shrink: 0; position: relative; z-index: 2">
-        <div style="border-radius: 48px; padding: 9px; background: #141216; box-shadow: 0 40px 90px rgba(20,18,22,.24)">
+        <div class="hup h4" style="border-radius: 48px; padding: 9px; background: #241a26; box-shadow: 0 40px 90px rgba(59,42,61,.24)">
           <div id="playbox" role="img" aria-label="Fin &amp; Fern being played: feeding the fish, building a tank, the den, catching a rare koi and the greenhouse" style="position: relative; display: block; width: 100%; height: 600px; border-radius: 40px; overflow: hidden; background: #22392c"><img src="img/phone-play.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top"><video id="playv" src="img/phone-play.mp4" muted loop playsinline preload="auto" disablepictureinpicture disableremoteplayback x-webkit-airplay="deny" aria-hidden="true" tabindex="-1" style="position: absolute; left: 0; top: 0; width: 1px; height: 1px; opacity: 0; pointer-events: none"></video><canvas id="playc" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity .4s"></canvas></div>
         </div>
       </div>
       <div class="fffan-side fffanr" style="width: 260px; flex-shrink: 0; margin-left: -36px; margin-top: 80px">
-        <div style="border-radius: 44px; padding: 8px; background: #141216; box-shadow: 0 30px 70px rgba(20,18,22,.16)">
+        <div class="hup h6" style="border-radius: 44px; padding: 8px; background: #241a26; box-shadow: 0 30px 70px rgba(59,42,61,.16)">
           <img src="img/lagoon.jpg" alt="Fishing at the Coral Lagoon" style="display: block; width: 100%; height: 500px; object-fit: cover; object-position: top; border-radius: 37px">
         </div>
       </div>
@@ -165,45 +200,42 @@ a{color:#141216}a:hover{color:#c4652f}
   </section>
 
   <section style="position: relative; z-index: 1; padding: 150px 24px 30px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px">
-    <h2 class="ffrise" style="margin: 0; font-weight: 900; line-height: .92; letter-spacing: -0.05em; font-size: clamp(48px, 7.5vw, 104px)">Three places<br>to slow down.</h2>
-    <p class="ffrise2" style="margin: 0; max-width: 540px; font-size: 18px; font-weight: 700; line-height: 1.55; color: #6b6670">Tend your tanks in the den, grow plants in the greenhouse, then head out and fish for something new to bring home.</p>
+    <h2 style="margin: 0; font-weight: 900; line-height: .97; letter-spacing: -0.028em; font-size: clamp(48px, 7.5vw, 104px)">Three places<br>to slow down.</h2>
+    <p style="margin: 0; max-width: 540px; font-size: 18px; font-weight: 600; line-height: 1.55; color: #6f5d71">Tend your tanks in the den, grow plants in the greenhouse, then head out and fish for something new to bring home.</p>
     <div style="width: 100%; max-width: 1160px; margin-top: 34px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 20px; text-align: left">
-      <a href="#den" class="ffrise" style="display: flex; flex-direction: column; background: #ffffff; border-radius: 36px; overflow: hidden; text-decoration: none; color: #141216">
+      <a href="#den" class="pcard" style="display: flex; flex-direction: column; border-radius: 26px; overflow: hidden; text-decoration: none">
         <div style="height: 230px; background: url(img/den-night.jpg) center 32% / cover no-repeat"></div>
         <div style="padding: 24px 26px 28px; display: flex; flex-direction: column; gap: 14px">
           <div style="display: flex; align-items: center; justify-content: space-between">
-            <b style="font-size: 28px; font-weight: 900; letter-spacing: -0.04em">The den</b>
-            <span style="font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-weight: 600; font-size: 13px; padding: 5px 11px; border-radius: 999px; background: #ffe2b8">01</span>
+            <b style="font-size: 28px; font-weight: 900; letter-spacing: -0.02em">The den</b>
           </div>
           <div style="display: grid; grid-template-columns: 74px 1fr; gap: 8px 10px; font-size: 14px; line-height: 1.45">
-            <span style="font-weight: 900; color: #8a8490">You</span><span style="font-weight: 800">Scape tanks, feed and clean, breed new fish</span>
-            <span style="font-weight: 900; color: #8a8490">You get</span><span style="font-weight: 800">Coins from happy, clean tanks and rare colour morphs</span>
+            <span style="font-weight: 900; color: #8d7b8e">You</span><span style="font-weight: 800">Scape tanks, feed and clean, breed new fish</span>
+            <span style="font-weight: 900; color: #8d7b8e">You get</span><span style="font-weight: 800">Coins from happy, clean tanks and rare colour morphs</span>
           </div>
         </div>
       </a>
-      <a href="#greenhouse" class="ffrise" style="display: flex; flex-direction: column; background: #ffffff; border-radius: 36px; overflow: hidden; text-decoration: none; color: #141216">
+      <a href="#greenhouse" class="pcard" style="display: flex; flex-direction: column; border-radius: 26px; overflow: hidden; text-decoration: none">
         <div style="height: 230px; background: url(img/greenhouse.jpg) center 46% / cover no-repeat"></div>
         <div style="padding: 24px 26px 28px; display: flex; flex-direction: column; gap: 14px">
           <div style="display: flex; align-items: center; justify-content: space-between">
-            <b style="font-size: 28px; font-weight: 900; letter-spacing: -0.04em">The greenhouse</b>
-            <span style="font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-weight: 600; font-size: 13px; padding: 5px 11px; border-radius: 999px; background: #cfeec1">02</span>
+            <b style="font-size: 28px; font-weight: 900; letter-spacing: -0.02em">The greenhouse</b>
           </div>
           <div style="display: grid; grid-template-columns: 74px 1fr; gap: 8px 10px; font-size: 14px; line-height: 1.45">
-            <span style="font-weight: 900; color: #8a8490">You</span><span style="font-weight: 800">Pot, mist and harvest plants</span>
-            <span style="font-weight: 900; color: #8a8490">You get</span><span style="font-weight: 800">Plants for your tanks, coins from houseplants and rare sports</span>
+            <span style="font-weight: 900; color: #8d7b8e">You</span><span style="font-weight: 800">Pot, mist and harvest plants</span>
+            <span style="font-weight: 900; color: #8d7b8e">You get</span><span style="font-weight: 800">Plants for your tanks, coins from houseplants and rare sports</span>
           </div>
         </div>
       </a>
-      <a href="#fishing" class="ffrise" style="display: flex; flex-direction: column; background: #ffffff; border-radius: 36px; overflow: hidden; text-decoration: none; color: #141216">
+      <a href="#fishing" class="pcard" style="display: flex; flex-direction: column; border-radius: 26px; overflow: hidden; text-decoration: none">
         <div style="height: 230px; background: url(img/cards.jpg) 80% 46% / 600% auto no-repeat, #8fc35b"></div>
         <div style="padding: 24px 26px 28px; display: flex; flex-direction: column; gap: 14px">
           <div style="display: flex; align-items: center; justify-content: space-between">
-            <b style="font-size: 28px; font-weight: 900; letter-spacing: -0.04em">Fishing</b>
-            <span style="font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-weight: 600; font-size: 13px; padding: 5px 11px; border-radius: 999px; background: #c9e6f7">03</span>
+            <b style="font-size: 28px; font-weight: 900; letter-spacing: -0.02em">Fishing</b>
           </div>
           <div style="display: grid; grid-template-columns: 74px 1fr; gap: 8px 10px; font-size: 14px; line-height: 1.45">
-            <span style="font-weight: 900; color: #8a8490">You</span><span style="font-weight: 800">Pick a spot and bait, cast and reel in</span>
-            <span style="font-weight: 900; color: #8a8490">You get</span><span style="font-weight: 800">Wild species, catch cards and size records</span>
+            <span style="font-weight: 900; color: #8d7b8e">You</span><span style="font-weight: 800">Pick a spot and bait, cast and reel in</span>
+            <span style="font-weight: 900; color: #8d7b8e">You get</span><span style="font-weight: 800">Wild species, catch cards and size records</span>
           </div>
         </div>
       </a>
@@ -212,10 +244,10 @@ a{color:#141216}a:hover{color:#c4652f}
 
   <section id="den" style="position: relative; z-index: 1; padding: 120px 24px">
     <div style="max-width: 1160px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 40px 56px; flex-direction: row">
-      <div class="ffrise" style="flex: 1 1 400px; max-width: 470px; display: flex; flex-direction: column; gap: 20px">
-        <span style="align-self: flex-start; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-weight: 600; font-size: 14px; letter-spacing: .08em; padding: 7px 14px; border-radius: 999px; background: #ffe2b8; color: #141216">01 · THE DEN</span>
-        <h2 style="margin: 0; font-weight: 900; line-height: .92; letter-spacing: -0.05em; font-size: clamp(48px, 6.6vw, 92px)">Your cozy<br>little den.</h2>
-        <p style="margin: 0; font-size: 19px; font-weight: 700; line-height: 1.55; color: #6b6670">Shelves of glowing tanks, a few plants and your favourite things. Every tank you build lives here, and each one is a world you can step into.</p>
+      <div style="flex: 1 1 400px; max-width: 470px; display: flex; flex-direction: column; gap: 20px">
+        <span style="align-self: flex-start; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-weight: 600; font-size: 17px; padding: 6px 14px; border-radius: 10px; background: #ffe2b8; color: #3b2a3d">The den</span>
+        <h2 style="margin: 0; font-weight: 900; line-height: .97; letter-spacing: -0.028em; font-size: clamp(48px, 6.6vw, 92px)">Your cozy<br>little den.</h2>
+        <p style="margin: 0; font-size: 19px; font-weight: 600; line-height: 1.55; color: #6f5d71">Shelves of glowing tanks, a few plants and your favourite things. Every tank you build lives here, and each one is a world you can step into.</p>
         <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 6px">
           <div style="display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 800"><span style="width: 12px; height: 12px; border-radius: 6px; flex-shrink: 0; background: #e0743a"></span>Scape, feed and care for every tank</div>
           <div style="display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 800"><span style="width: 12px; height: 12px; border-radius: 6px; flex-shrink: 0; background: #e0743a"></span>Breed pairs into new colour morphs</div>
@@ -223,27 +255,27 @@ a{color:#141216}a:hover{color:#c4652f}
         </div>
       </div>
       <div class="ffstage" style="position: relative; flex: 0 0 auto; width: min(560px, 100%); aspect-ratio: 560 / 700">
-        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 0%; top: 3%; width: 24%; aspect-ratio: 1; rotate: -5deg; --d: 70px; background: url(img/props.png) 40% 0% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(20,18,22,.14)); z-index: 3"></div>
-        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 80%; top: -2%; width: 18%; aspect-ratio: 1; rotate: 4deg; --d: 50px; background: url(img/props.png) 60% 0% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(20,18,22,.14)); z-index: 3"></div>
+        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 0%; top: 3%; width: 24%; aspect-ratio: 1; rotate: -5deg; --d: 70px; background: url(img/props.png) 40% 0% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(59,42,61,.14)); z-index: 3"></div>
+        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 80%; top: -2%; width: 18%; aspect-ratio: 1; rotate: 4deg; --d: 50px; background: url(img/props.png) 60% 0% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(59,42,61,.14)); z-index: 3"></div>
         <div class="ffphone" style="position: absolute; left: 23%; top: 2%; width: 54%; z-index: 2">
-          <div style="border-radius: 48px; padding: 9px; background: #141216; box-shadow: 0 40px 90px rgba(20,18,22,.22)">
+          <div style="border-radius: 48px; padding: 9px; background: #241a26; box-shadow: 0 40px 90px rgba(59,42,61,.22)">
             <img src="img/den-night.jpg" alt="The den at night, with lit tanks on wooden shelves" loading="lazy" style="display: block; width: 100%; aspect-ratio: 390 / 800; object-fit: cover; object-position: top; border-radius: 40px">
           </div>
         </div>
-        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 77%; top: 14%; width: 26%; aspect-ratio: 1; rotate: 5deg; --d: 150px; background: url(img/props.png) 0% 0% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(20,18,22,.14)); z-index: 3"></div>
-        <div class="ffpar" aria-hidden="true" style="position: absolute; left: -5%; top: 58%; width: 30%; aspect-ratio: 1; rotate: 0deg; --d: 90px; background: url(img/props.png) 20% 0% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(20,18,22,.14)); z-index: 3"></div>
-        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 0%; top: 33%; width: 20%; aspect-ratio: 1; rotate: 8deg; --d: 210px; background: url(img/props.png) 100% 20% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(20,18,22,.14)); z-index: 3"></div>
-        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 80%; top: 50%; width: 21%; aspect-ratio: 1; rotate: -8deg; --d: 180px; background: url(img/props.png) 60% 20% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(20,18,22,.14)); z-index: 3"></div>
-        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 74%; top: 77%; width: 21%; aspect-ratio: 1; rotate: 0deg; --d: 120px; background: url(img/props.png) 80% 0% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(20,18,22,.14)); z-index: 3"></div>
+        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 77%; top: 14%; width: 26%; aspect-ratio: 1; rotate: 5deg; --d: 150px; background: url(img/props.png) 0% 0% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(59,42,61,.14)); z-index: 3"></div>
+        <div class="ffpar" aria-hidden="true" style="position: absolute; left: -5%; top: 58%; width: 30%; aspect-ratio: 1; rotate: 0deg; --d: 90px; background: url(img/props.png) 20% 0% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(59,42,61,.14)); z-index: 3"></div>
+        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 0%; top: 33%; width: 20%; aspect-ratio: 1; rotate: 8deg; --d: 210px; background: url(img/props.png) 100% 20% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(59,42,61,.14)); z-index: 3"></div>
+        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 80%; top: 50%; width: 21%; aspect-ratio: 1; rotate: -8deg; --d: 180px; background: url(img/props.png) 60% 20% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(59,42,61,.14)); z-index: 3"></div>
+        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 74%; top: 77%; width: 21%; aspect-ratio: 1; rotate: 0deg; --d: 120px; background: url(img/props.png) 80% 0% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(59,42,61,.14)); z-index: 3"></div>
       </div>
     </div>
   </section>
   <section id="greenhouse" style="position: relative; z-index: 1; padding: 120px 24px">
     <div style="max-width: 1160px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 40px 56px; flex-direction: row-reverse">
-      <div class="ffrise" style="flex: 1 1 400px; max-width: 470px; display: flex; flex-direction: column; gap: 20px">
-        <span style="align-self: flex-start; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-weight: 600; font-size: 14px; letter-spacing: .08em; padding: 7px 14px; border-radius: 999px; background: #cfeec1; color: #141216">02 · THE GREENHOUSE</span>
-        <h2 style="margin: 0; font-weight: 900; line-height: .92; letter-spacing: -0.05em; font-size: clamp(48px, 6.6vw, 92px)">Grow it<br>yourself.</h2>
-        <p style="margin: 0; font-size: 19px; font-weight: 700; line-height: 1.55; color: #6b6670">The Plant Farm is a rooftop glasshouse. Mist the pots, harvest bench plants for your tanks and pick houseplants for coins.</p>
+      <div style="flex: 1 1 400px; max-width: 470px; display: flex; flex-direction: column; gap: 20px">
+        <span style="align-self: flex-start; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-weight: 600; font-size: 17px; padding: 6px 14px; border-radius: 10px; background: #cfeec1; color: #3b2a3d">The greenhouse</span>
+        <h2 style="margin: 0; font-weight: 900; line-height: .97; letter-spacing: -0.028em; font-size: clamp(48px, 6.6vw, 92px)">Grow it<br>yourself.</h2>
+        <p style="margin: 0; font-size: 19px; font-weight: 600; line-height: 1.55; color: #6f5d71">The Plant Farm is a rooftop glasshouse. Mist the pots, harvest bench plants for your tanks and pick houseplants for coins.</p>
         <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 6px">
           <div style="display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 800"><span style="width: 12px; height: 12px; border-radius: 6px; flex-shrink: 0; background: #4f9a45"></span>Bench plants become portions for your tanks</div>
           <div style="display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 800"><span style="width: 12px; height: 12px; border-radius: 6px; flex-shrink: 0; background: #4f9a45"></span>Houseplants pay out in coins</div>
@@ -251,27 +283,27 @@ a{color:#141216}a:hover{color:#c4652f}
         </div>
       </div>
       <div class="ffstage" style="position: relative; flex: 0 0 auto; width: min(560px, 100%); aspect-ratio: 560 / 700">
-        <div class="ffpar" aria-hidden="true" style="position: absolute; left: -3%; top: 6%; width: 26%; aspect-ratio: 1; rotate: -4deg; --d: 110px; background: url(img/props.png) 0% 40% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(20,18,22,.14)); z-index: 3"></div>
-        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 79%; top: 2%; width: 23%; aspect-ratio: 1; rotate: 6deg; --d: 70px; background: url(img/props.png) 40% 40% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(20,18,22,.14)); z-index: 3"></div>
+        <div class="ffpar" aria-hidden="true" style="position: absolute; left: -3%; top: 6%; width: 26%; aspect-ratio: 1; rotate: -4deg; --d: 110px; background: url(img/props.png) 0% 40% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(59,42,61,.14)); z-index: 3"></div>
+        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 79%; top: 2%; width: 23%; aspect-ratio: 1; rotate: 6deg; --d: 70px; background: url(img/props.png) 40% 40% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(59,42,61,.14)); z-index: 3"></div>
         <div class="ffphone" style="position: absolute; left: 23%; top: 2%; width: 54%; z-index: 2">
-          <div style="border-radius: 48px; padding: 9px; background: #141216; box-shadow: 0 40px 90px rgba(20,18,22,.22)">
+          <div style="border-radius: 48px; padding: 9px; background: #241a26; box-shadow: 0 40px 90px rgba(59,42,61,.22)">
             <img src="img/greenhouse.jpg" alt="The Plant Farm greenhouse full of potted plants" loading="lazy" style="display: block; width: 100%; aspect-ratio: 390 / 800; object-fit: cover; object-position: top; border-radius: 40px">
           </div>
         </div>
-        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 2%; top: 35%; width: 22%; aspect-ratio: 1; rotate: -7deg; --d: 200px; background: url(img/props.png) 20% 60% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(20,18,22,.14)); z-index: 3"></div>
-        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 78%; top: 37%; width: 24%; aspect-ratio: 1; rotate: -4deg; --d: 170px; background: url(img/props.png) 20% 40% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(20,18,22,.14)); z-index: 3"></div>
-        <div class="ffpar" aria-hidden="true" style="position: absolute; left: -2%; top: 62%; width: 22%; aspect-ratio: 1; rotate: 3deg; --d: 140px; background: url(img/props.png) 60% 40% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(20,18,22,.14)); z-index: 3"></div>
-        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 76%; top: 70%; width: 26%; aspect-ratio: 1; rotate: 0deg; --d: 100px; background: url(img/props.png) 0% 60% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(20,18,22,.14)); z-index: 3"></div>
-        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 36%; top: 86%; width: 20%; aspect-ratio: 1; rotate: 0deg; --d: 60px; background: url(img/props.png) 40% 60% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(20,18,22,.14)); z-index: 3"></div>
+        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 2%; top: 35%; width: 22%; aspect-ratio: 1; rotate: -7deg; --d: 200px; background: url(img/props.png) 20% 60% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(59,42,61,.14)); z-index: 3"></div>
+        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 78%; top: 37%; width: 24%; aspect-ratio: 1; rotate: -4deg; --d: 170px; background: url(img/props.png) 20% 40% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(59,42,61,.14)); z-index: 3"></div>
+        <div class="ffpar" aria-hidden="true" style="position: absolute; left: -2%; top: 62%; width: 22%; aspect-ratio: 1; rotate: 3deg; --d: 140px; background: url(img/props.png) 60% 40% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(59,42,61,.14)); z-index: 3"></div>
+        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 76%; top: 70%; width: 26%; aspect-ratio: 1; rotate: 0deg; --d: 100px; background: url(img/props.png) 0% 60% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(59,42,61,.14)); z-index: 3"></div>
+        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 36%; top: 86%; width: 20%; aspect-ratio: 1; rotate: 0deg; --d: 60px; background: url(img/props.png) 40% 60% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(59,42,61,.14)); z-index: 3"></div>
       </div>
     </div>
   </section>
   <section id="fishing" style="position: relative; z-index: 1; padding: 120px 24px">
     <div style="max-width: 1160px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 40px 56px; flex-direction: row">
-      <div class="ffrise" style="flex: 1 1 400px; max-width: 470px; display: flex; flex-direction: column; gap: 20px">
-        <span style="align-self: flex-start; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-weight: 600; font-size: 14px; letter-spacing: .08em; padding: 7px 14px; border-radius: 999px; background: #c9e6f7; color: #141216">03 · FISHING</span>
-        <h2 style="margin: 0; font-weight: 900; line-height: .92; letter-spacing: -0.05em; font-size: clamp(48px, 6.6vw, 92px)">Cast a line<br>anywhere.</h2>
-        <p style="margin: 0; font-size: 19px; font-weight: 700; line-height: 1.55; color: #6b6670">Lily ponds, glacier tarns, mangroves and the open ocean. Each spot has its own fish, its own weather and its own time of day.</p>
+      <div style="flex: 1 1 400px; max-width: 470px; display: flex; flex-direction: column; gap: 20px">
+        <span style="align-self: flex-start; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-weight: 600; font-size: 17px; padding: 6px 14px; border-radius: 10px; background: #c9e6f7; color: #3b2a3d">Fishing</span>
+        <h2 style="margin: 0; font-weight: 900; line-height: .97; letter-spacing: -0.028em; font-size: clamp(48px, 6.6vw, 92px)">Cast a line<br>anywhere.</h2>
+        <p style="margin: 0; font-size: 19px; font-weight: 600; line-height: 1.55; color: #6f5d71">Lily ponds, glacier tarns, mangroves and the open ocean. Each spot has its own fish, its own weather and its own time of day.</p>
         <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 6px">
           <div style="display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 800"><span style="width: 12px; height: 12px; border-radius: 6px; flex-shrink: 0; background: #3f86c9"></span>Pick a spot, choose your bait and cast</div>
           <div style="display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 800"><span style="width: 12px; height: 12px; border-radius: 6px; flex-shrink: 0; background: #3f86c9"></span>Every catch becomes a collectible card</div>
@@ -279,122 +311,122 @@ a{color:#141216}a:hover{color:#c4652f}
         </div>
       </div>
       <div class="ffstage" style="position: relative; flex: 0 0 auto; width: min(560px, 100%); aspect-ratio: 560 / 700">
-        <div class="ffpar" aria-hidden="true" style="position: absolute; left: -12%; top: 5%; width: 34%; aspect-ratio: 1; rotate: -8deg; --d: 110px; background: url(img/cards.jpg) 0% 0 / 600% 100% no-repeat; border: 7px solid #ffffff; border-radius: 26px; box-shadow: 0 24px 50px rgba(20,18,22,.18); box-sizing: border-box; z-index: 3"></div>
-        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 75%; top: 1%; width: 32%; aspect-ratio: 1; rotate: 7deg; --d: 70px; background: url(img/cards.jpg) 40% 0 / 600% 100% no-repeat; border: 7px solid #ffffff; border-radius: 26px; box-shadow: 0 24px 50px rgba(20,18,22,.18); box-sizing: border-box; z-index: 3"></div>
+        <div class="ffpar" aria-hidden="true" style="position: absolute; left: -12%; top: 5%; width: 34%; aspect-ratio: 1; rotate: -8deg; --d: 110px; background: url(img/cards.jpg) 0% 0 / 600% 100% no-repeat; border: 7px solid #ffffff; border-radius: 26px; box-shadow: 0 24px 50px rgba(59,42,61,.18); box-sizing: border-box; z-index: 3"></div>
+        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 75%; top: 1%; width: 32%; aspect-ratio: 1; rotate: 7deg; --d: 70px; background: url(img/cards.jpg) 40% 0 / 600% 100% no-repeat; border: 7px solid #ffffff; border-radius: 26px; box-shadow: 0 24px 50px rgba(59,42,61,.18); box-sizing: border-box; z-index: 3"></div>
         <div class="ffphone" style="position: absolute; left: 23%; top: 2%; width: 54%; z-index: 2">
-          <div style="border-radius: 48px; padding: 9px; background: #141216; box-shadow: 0 40px 90px rgba(20,18,22,.22)">
+          <div style="border-radius: 48px; padding: 9px; background: #241a26; box-shadow: 0 40px 90px rgba(59,42,61,.22)">
             <img src="img/fishing.jpg" alt="Fishing at the Coral Lagoon on a sunny day" loading="lazy" style="display: block; width: 100%; aspect-ratio: 390 / 800; object-fit: cover; object-position: top; border-radius: 40px">
           </div>
         </div>
-        <div class="ffpar" aria-hidden="true" style="position: absolute; left: -10%; top: 57%; width: 30%; aspect-ratio: 1; rotate: 5deg; --d: 160px; background: url(img/cards.jpg) 60% 0 / 600% 100% no-repeat; border: 7px solid #ffffff; border-radius: 26px; box-shadow: 0 24px 50px rgba(20,18,22,.18); box-sizing: border-box; z-index: 3"></div>
-        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 76%; top: 49%; width: 33%; aspect-ratio: 1; rotate: -6deg; --d: 140px; background: url(img/cards.jpg) 100% 0 / 600% 100% no-repeat; border: 7px solid #ffffff; border-radius: 26px; box-shadow: 0 24px 50px rgba(20,18,22,.18); box-sizing: border-box; z-index: 3"></div>
-        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 1%; top: 36%; width: 22%; aspect-ratio: 1; rotate: -10deg; --d: 230px; background: url(img/props.png) 0% 80% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(20,18,22,.14)); z-index: 3"></div>
-        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 79%; top: 85%; width: 20%; aspect-ratio: 1; rotate: 8deg; --d: 190px; background: url(img/props.png) 20% 80% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(20,18,22,.14)); z-index: 3"></div>
+        <div class="ffpar" aria-hidden="true" style="position: absolute; left: -10%; top: 57%; width: 30%; aspect-ratio: 1; rotate: 5deg; --d: 160px; background: url(img/cards.jpg) 60% 0 / 600% 100% no-repeat; border: 7px solid #ffffff; border-radius: 26px; box-shadow: 0 24px 50px rgba(59,42,61,.18); box-sizing: border-box; z-index: 3"></div>
+        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 76%; top: 49%; width: 33%; aspect-ratio: 1; rotate: -6deg; --d: 140px; background: url(img/cards.jpg) 100% 0 / 600% 100% no-repeat; border: 7px solid #ffffff; border-radius: 26px; box-shadow: 0 24px 50px rgba(59,42,61,.18); box-sizing: border-box; z-index: 3"></div>
+        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 1%; top: 36%; width: 22%; aspect-ratio: 1; rotate: -10deg; --d: 230px; background: url(img/props.png) 0% 80% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(59,42,61,.14)); z-index: 3"></div>
+        <div class="ffpar" aria-hidden="true" style="position: absolute; left: 79%; top: 85%; width: 20%; aspect-ratio: 1; rotate: 8deg; --d: 190px; background: url(img/props.png) 20% 80% / 600% 600% no-repeat; image-rendering: pixelated; filter: drop-shadow(0 14px 18px rgba(59,42,61,.14)); z-index: 3"></div>
       </div>
     </div>
   </section>
 
   <section style="position: relative; z-index: 1; padding: 130px 24px 150px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px">
-    <h2 class="ffrise" style="margin: 0; font-weight: 900; line-height: .92; letter-spacing: -0.05em; font-size: clamp(48px, 7.5vw, 104px)">No two tanks<br>look the same.</h2>
-    <p class="ffrise2" style="margin: 0; max-width: 560px; font-size: 18px; font-weight: 700; line-height: 1.55; color: #6b6670">From a palm sized pico cube to a peninsula reef. Pick the glass, the backdrop and the water, then make it yours.</p>
-    <div class="ffrise2" style="display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 8px">
+    <h2 style="margin: 0; font-weight: 900; line-height: .97; letter-spacing: -0.028em; font-size: clamp(48px, 7.5vw, 104px)">No two tanks<br>look the same.</h2>
+    <p style="margin: 0; max-width: 560px; font-size: 18px; font-weight: 600; line-height: 1.55; color: #6f5d71">From a palm sized pico cube to a peninsula reef. Pick the glass, the backdrop and the water, then make it yours.</p>
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 8px">
       <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; align-items: center">
-        <span style="font-size: 13px; font-weight: 900; color: #8a8490; margin-right: 4px">Backdrops</span>
-        <span title="Den glow" style="width: 30px; height: 30px; border-radius: 15px; background: rgb(78,54,40); box-shadow: inset 0 0 0 1px rgba(20,18,22,.12), 0 0 0 3px #ffffff"></span><span title="Frosted" style="width: 30px; height: 30px; border-radius: 15px; background: rgb(226,234,232); box-shadow: inset 0 0 0 1px rgba(20,18,22,.12), 0 0 0 3px #ffffff"></span><span title="Plum" style="width: 30px; height: 30px; border-radius: 15px; background: rgb(61,48,72); box-shadow: inset 0 0 0 1px rgba(20,18,22,.12), 0 0 0 3px #ffffff"></span><span title="Midnight" style="width: 30px; height: 30px; border-radius: 15px; background: rgb(28,32,58); box-shadow: inset 0 0 0 1px rgba(20,18,22,.12), 0 0 0 3px #ffffff"></span><span title="Forest" style="width: 30px; height: 30px; border-radius: 15px; background: rgb(36,58,46); box-shadow: inset 0 0 0 1px rgba(20,18,22,.12), 0 0 0 3px #ffffff"></span><span title="Cream" style="width: 30px; height: 30px; border-radius: 15px; background: rgb(236,226,206); box-shadow: inset 0 0 0 1px rgba(20,18,22,.12), 0 0 0 3px #ffffff"></span><span title="Sky" style="width: 30px; height: 30px; border-radius: 15px; background: rgb(134,184,206); box-shadow: inset 0 0 0 1px rgba(20,18,22,.12), 0 0 0 3px #ffffff"></span><span title="White" style="width: 30px; height: 30px; border-radius: 15px; background: rgb(255,255,255); box-shadow: inset 0 0 0 1px rgba(20,18,22,.12), 0 0 0 3px #ffffff"></span><span title="Black" style="width: 30px; height: 30px; border-radius: 15px; background: rgb(0,0,0); box-shadow: inset 0 0 0 1px rgba(20,18,22,.12), 0 0 0 3px #ffffff"></span><span title="Deep blue" style="width: 30px; height: 30px; border-radius: 15px; background: rgb(12,34,84); box-shadow: inset 0 0 0 1px rgba(20,18,22,.12), 0 0 0 3px #ffffff"></span>
+        <span style="font-size: 13px; font-weight: 900; color: #8d7b8e; margin-right: 4px">Backdrops</span>
+        <span title="Den glow" style="width: 30px; height: 30px; border-radius: 15px; background: rgb(78,54,40); box-shadow: inset 0 0 0 1px rgba(59,42,61,.12), 0 0 0 3px #fdf9ee"></span><span title="Frosted" style="width: 30px; height: 30px; border-radius: 15px; background: rgb(226,234,232); box-shadow: inset 0 0 0 1px rgba(59,42,61,.12), 0 0 0 3px #fdf9ee"></span><span title="Plum" style="width: 30px; height: 30px; border-radius: 15px; background: rgb(61,48,72); box-shadow: inset 0 0 0 1px rgba(59,42,61,.12), 0 0 0 3px #fdf9ee"></span><span title="Midnight" style="width: 30px; height: 30px; border-radius: 15px; background: rgb(28,32,58); box-shadow: inset 0 0 0 1px rgba(59,42,61,.12), 0 0 0 3px #fdf9ee"></span><span title="Forest" style="width: 30px; height: 30px; border-radius: 15px; background: rgb(36,58,46); box-shadow: inset 0 0 0 1px rgba(59,42,61,.12), 0 0 0 3px #fdf9ee"></span><span title="Cream" style="width: 30px; height: 30px; border-radius: 15px; background: rgb(236,226,206); box-shadow: inset 0 0 0 1px rgba(59,42,61,.12), 0 0 0 3px #fdf9ee"></span><span title="Sky" style="width: 30px; height: 30px; border-radius: 15px; background: rgb(134,184,206); box-shadow: inset 0 0 0 1px rgba(59,42,61,.12), 0 0 0 3px #fdf9ee"></span><span title="White" style="width: 30px; height: 30px; border-radius: 15px; background: rgb(255,255,255); box-shadow: inset 0 0 0 1px rgba(59,42,61,.12), 0 0 0 3px #fdf9ee"></span><span title="Black" style="width: 30px; height: 30px; border-radius: 15px; background: rgb(0,0,0); box-shadow: inset 0 0 0 1px rgba(59,42,61,.12), 0 0 0 3px #fdf9ee"></span><span title="Deep blue" style="width: 30px; height: 30px; border-radius: 15px; background: rgb(12,34,84); box-shadow: inset 0 0 0 1px rgba(59,42,61,.12), 0 0 0 3px #fdf9ee"></span>
       </div>
       <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; align-items: center">
-        <span style="font-size: 13px; font-weight: 900; color: #8a8490; margin-right: 4px">Water</span>
-        <span style="display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 13px; border-radius: 999px; background: #ffffff; font-size: 13px; font-weight: 800"><span style="width: 12px; height: 12px; border-radius: 6px; background: rgb(92,170,206)"></span>Clear</span><span style="display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 13px; border-radius: 999px; background: #ffffff; font-size: 13px; font-weight: 800"><span style="width: 12px; height: 12px; border-radius: 6px; background: rgb(176,124,60)"></span>Tea</span><span style="display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 13px; border-radius: 999px; background: #ffffff; font-size: 13px; font-weight: 800"><span style="width: 12px; height: 12px; border-radius: 6px; background: rgb(52,160,214)"></span>Lagoon</span><span style="display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 13px; border-radius: 999px; background: #ffffff; font-size: 13px; font-weight: 800"><span style="width: 12px; height: 12px; border-radius: 6px; background: rgb(36,120,236)"></span>Reef blue</span>
+        <span style="font-size: 13px; font-weight: 900; color: #8d7b8e; margin-right: 4px">Water</span>
+        <span style="display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 13px; border-radius: 999px; background: #f6efd9; font-size: 13px; font-weight: 800"><span style="width: 12px; height: 12px; border-radius: 6px; background: rgb(92,170,206)"></span>Clear</span><span style="display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 13px; border-radius: 999px; background: #f6efd9; font-size: 13px; font-weight: 800"><span style="width: 12px; height: 12px; border-radius: 6px; background: rgb(176,124,60)"></span>Tea</span><span style="display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 13px; border-radius: 999px; background: #f6efd9; font-size: 13px; font-weight: 800"><span style="width: 12px; height: 12px; border-radius: 6px; background: rgb(52,160,214)"></span>Lagoon</span><span style="display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 13px; border-radius: 999px; background: #f6efd9; font-size: 13px; font-weight: 800"><span style="width: 12px; height: 12px; border-radius: 6px; background: rgb(36,120,236)"></span>Reef blue</span>
       </div>
     </div>
     <div class="ffgal" style="width: 100%; max-width: 1160px; margin-top: 46px; display: flex; gap: 20px; align-items: flex-start; text-align: left">
         <div class="ffpar" style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 20px; --d: 40px; margin-top: 0px">
-          <div style="background: #ffffff; border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
-            <img src="img/tanks/pano.jpg" alt="A long planted tank with two green hills" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #e9e7ec">
+          <div style="background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
+            <img src="img/tanks/pano.jpg" alt="A long planted tank with two green hills" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #ebe1c6">
             <div style="padding: 0 10px; display: flex; flex-direction: column; gap: 3px">
               <b style="font-size: 18px; font-weight: 900; letter-spacing: -0.02em">Panorama Rimless</b>
-              <span style="font-size: 14px; font-weight: 700; color: #6b6670; line-height: 1.4">Forest backdrop with neon tetras and angels</span>
+              <span style="font-size: 14px; font-weight: 700; color: #6f5d71; line-height: 1.4">Forest backdrop with neon tetras and angels</span>
             </div>
           </div>
-          <div style="background: #ffffff; border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
-            <img src="img/tanks/pico.jpg" alt="A tiny cube on a pure white backdrop" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #e9e7ec">
+          <div style="background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
+            <img src="img/tanks/pico.jpg" alt="A tiny cube on a pure white backdrop" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #ebe1c6">
             <div style="padding: 0 10px; display: flex; flex-direction: column; gap: 3px">
               <b style="font-size: 18px; font-weight: 900; letter-spacing: -0.02em">Pico Cube</b>
-              <span style="font-size: 14px; font-weight: 700; color: #6b6670; line-height: 1.4">White studio backdrop and a shrimp colony</span>
+              <span style="font-size: 14px; font-weight: 700; color: #6f5d71; line-height: 1.4">White studio backdrop and a shrimp colony</span>
             </div>
           </div>
-          <div style="background: #ffffff; border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
-            <img src="img/tanks/basin.jpg" alt="A round ceramic basin seen from above" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #e9e7ec">
+          <div style="background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
+            <img src="img/tanks/basin.jpg" alt="A round ceramic basin seen from above" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #ebe1c6">
             <div style="padding: 0 10px; display: flex; flex-direction: column; gap: 3px">
               <b style="font-size: 18px; font-weight: 900; letter-spacing: -0.02em">Lotus Basin</b>
-              <span style="font-size: 14px; font-weight: 700; color: #6b6670; line-height: 1.4">Look down on lilies and koi</span>
+              <span style="font-size: 14px; font-weight: 700; color: #6f5d71; line-height: 1.4">Look down on lilies and koi</span>
             </div>
           </div>
-          <div style="background: #ffffff; border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
-            <img src="img/tanks/tray.jpg" alt="A shallow tray with an island" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #e9e7ec">
+          <div style="background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
+            <img src="img/tanks/tray.jpg" alt="A shallow tray with an island" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #ebe1c6">
             <div style="padding: 0 10px; display: flex; flex-direction: column; gap: 3px">
               <b style="font-size: 18px; font-weight: 900; letter-spacing: -0.02em">Wabi Tray</b>
-              <span style="font-size: 14px; font-weight: 700; color: #6b6670; line-height: 1.4">Plum backdrop and a mossy island</span>
+              <span style="font-size: 14px; font-weight: 700; color: #6f5d71; line-height: 1.4">Plum backdrop and a mossy island</span>
             </div>
           </div>
         </div>
         <div class="ffpar" style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 20px; --d: -70px; margin-top: 120px">
-          <div style="background: #ffffff; border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
-            <img src="img/tanks/reefcube.jpg" alt="A reef cube with corals on a rock bommie" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #e9e7ec">
+          <div style="background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
+            <img src="img/tanks/reefcube.jpg" alt="A reef cube with corals on a rock bommie" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #ebe1c6">
             <div style="padding: 0 10px; display: flex; flex-direction: column; gap: 3px">
               <b style="font-size: 18px; font-weight: 900; letter-spacing: -0.02em">Reef Cube</b>
-              <span style="font-size: 14px; font-weight: 700; color: #6b6670; line-height: 1.4">Deep blue backdrop with clownfish and a yellow tang</span>
+              <span style="font-size: 14px; font-weight: 700; color: #6f5d71; line-height: 1.4">Deep blue backdrop with clownfish and a yellow tang</span>
             </div>
           </div>
-          <div style="background: #ffffff; border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
-            <img src="img/tanks/column.jpg" alt="A tall tank with a rock spire on black" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #e9e7ec">
+          <div style="background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
+            <img src="img/tanks/column.jpg" alt="A tall tank with a rock spire on black" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #ebe1c6">
             <div style="padding: 0 10px; display: flex; flex-direction: column; gap: 3px">
               <b style="font-size: 18px; font-weight: 900; letter-spacing: -0.02em">Tall Column</b>
-              <span style="font-size: 14px; font-weight: 700; color: #6b6670; line-height: 1.4">Black backdrop with bettas and glowlights</span>
+              <span style="font-size: 14px; font-weight: 700; color: #6f5d71; line-height: 1.4">Black backdrop with bettas and glowlights</span>
             </div>
           </div>
-          <div style="background: #ffffff; border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
-            <img src="img/tanks/bowl.jpg" alt="A classic round fish bowl" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #e9e7ec">
+          <div style="background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
+            <img src="img/tanks/bowl.jpg" alt="A classic round fish bowl" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #ebe1c6">
             <div style="padding: 0 10px; display: flex; flex-direction: column; gap: 3px">
               <b style="font-size: 18px; font-weight: 900; letter-spacing: -0.02em">Goldfish Bowl</b>
-              <span style="font-size: 14px; font-weight: 700; color: #6b6670; line-height: 1.4">A ranchu and an oranda in round glass</span>
+              <span style="font-size: 14px; font-weight: 700; color: #6f5d71; line-height: 1.4">A ranchu and an oranda in round glass</span>
             </div>
           </div>
-          <div style="background: #ffffff; border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
-            <img src="img/tanks/palace.jpg" alt="A long show tank on a night backdrop with a diamond palace" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #e9e7ec">
+          <div style="background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
+            <img src="img/tanks/palace.jpg" alt="A long show tank on a night backdrop with a diamond palace" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #ebe1c6">
             <div style="padding: 0 10px; display: flex; flex-direction: column; gap: 3px">
               <b style="font-size: 18px; font-weight: 900; letter-spacing: -0.02em">Grand Show Tank</b>
-              <span style="font-size: 14px; font-weight: 700; color: #6b6670; line-height: 1.4">Night backdrop with a diamond palace and discus</span>
+              <span style="font-size: 14px; font-weight: 700; color: #6f5d71; line-height: 1.4">Night backdrop with a diamond palace and discus</span>
             </div>
           </div>
         </div>
         <div class="ffpar" style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 20px; --d: 110px; margin-top: 40px">
-          <div style="background: #ffffff; border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
-            <img src="img/tanks/peninsula.jpg" alt="A huge reef tank with a coral wall" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #e9e7ec">
+          <div style="background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
+            <img src="img/tanks/peninsula.jpg" alt="A huge reef tank with a coral wall" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #ebe1c6">
             <div style="padding: 0 10px; display: flex; flex-direction: column; gap: 3px">
               <b style="font-size: 18px; font-weight: 900; letter-spacing: -0.02em">Peninsula Reef</b>
-              <span style="font-size: 14px; font-weight: 700; color: #6b6670; line-height: 1.4">A full reef wall you can see from three sides</span>
+              <span style="font-size: 14px; font-weight: 700; color: #6f5d71; line-height: 1.4">A full reef wall you can see from three sides</span>
             </div>
           </div>
-          <div style="background: #ffffff; border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
-            <img src="img/tanks/ripa.jpg" alt="A riverbank tank with a mossy slope" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #e9e7ec">
+          <div style="background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
+            <img src="img/tanks/ripa.jpg" alt="A riverbank tank with a mossy slope" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #ebe1c6">
             <div style="padding: 0 10px; display: flex; flex-direction: column; gap: 3px">
               <b style="font-size: 18px; font-weight: 900; letter-spacing: -0.02em">Riparium</b>
-              <span style="font-size: 14px; font-weight: 700; color: #6b6670; line-height: 1.4">Roots and leaves break the surface</span>
+              <span style="font-size: 14px; font-weight: 700; color: #6f5d71; line-height: 1.4">Roots and leaves break the surface</span>
             </div>
           </div>
-          <div style="background: #ffffff; border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
-            <img src="img/tanks/terrace.jpg" alt="A deep cube with terraced plant beds" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #e9e7ec">
+          <div style="background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
+            <img src="img/tanks/terrace.jpg" alt="A deep cube with terraced plant beds" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #ebe1c6">
             <div style="padding: 0 10px; display: flex; flex-direction: column; gap: 3px">
               <b style="font-size: 18px; font-weight: 900; letter-spacing: -0.02em">Terrace Cube</b>
-              <span style="font-size: 14px; font-weight: 700; color: #6b6670; line-height: 1.4">Sky backdrop with stepped green terraces</span>
+              <span style="font-size: 14px; font-weight: 700; color: #6f5d71; line-height: 1.4">Sky backdrop with stepped green terraces</span>
             </div>
           </div>
-          <div style="background: #ffffff; border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
-            <img src="img/tanks/atlantis.jpg" alt="A tank with lagoon water and a golden rotunda" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #e9e7ec">
+          <div style="background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 30px; padding: 10px 10px 18px; display: flex; flex-direction: column; gap: 12px">
+            <img src="img/tanks/atlantis.jpg" alt="A tank with lagoon water and a golden rotunda" loading="lazy" decoding="async" width="1440" height="1120" style="display: block; width: 100%; height: auto; aspect-ratio: 720 / 560; border-radius: 22px; background: #ebe1c6">
             <div style="padding: 0 10px; display: flex; flex-direction: column; gap: 3px">
               <b style="font-size: 18px; font-weight: 900; letter-spacing: -0.02em">Standard Tank</b>
-              <span style="font-size: 14px; font-weight: 700; color: #6b6670; line-height: 1.4">Lagoon water and a golden rotunda</span>
+              <span style="font-size: 14px; font-weight: 700; color: #6f5d71; line-height: 1.4">Lagoon water and a golden rotunda</span>
             </div>
           </div>
         </div>
@@ -402,14 +434,14 @@ a{color:#141216}a:hover{color:#c4652f}
   </section>
 
   <section style="position: relative; z-index: 1; padding: 0 16px">
-    <div class="ffgrow" style="max-width: 1160px; margin: 0 auto; border-radius: 44px; background: #0e0c10; color: #ffffff; padding: clamp(48px, 7vw, 96px) clamp(24px, 6vw, 88px) 0; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 48px; overflow: hidden">
+    <div class="dith dreef" style="max-width: 1160px; margin: 0 auto; border-radius: 44px; background: #0c1f40; color: #fff8e8; padding: clamp(48px, 7vw, 96px) clamp(24px, 6vw, 88px) 0; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 48px; overflow: hidden">
       <div style="flex: 1 1 380px; display: flex; flex-direction: column; gap: 20px; padding-bottom: clamp(48px, 7vw, 96px)">
-        <span style="font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-weight: 600; font-size: 14px; color: #c9a7ff; letter-spacing: .08em">THE CORAL LAB</span>
-        <h2 style="margin: 0; font-weight: 900; line-height: .92; letter-spacing: -0.05em; font-size: clamp(44px, 6vw, 84px)">Corals no one<br>has seen.</h2>
-        <p style="margin: 0; font-size: 18px; font-weight: 700; line-height: 1.55; color: #b9b3bf; max-width: 420px">Every wild frag grows into its own strain. Raise them in the Lab, then fill a reef room that looks like nobody else's.</p>
+        <span style="font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-weight: 600; font-size: 17px; color: #ff9f80">The Coral Lab</span>
+        <h2 style="margin: 0; font-weight: 900; line-height: .97; letter-spacing: -0.028em; font-size: clamp(44px, 6vw, 84px)">Corals no one<br>has seen.</h2>
+        <p style="margin: 0; font-size: 18px; font-weight: 600; line-height: 1.55; color: #b7c8e0; max-width: 420px">Every wild frag grows into its own strain. Raise them in the Lab, then fill a reef room that looks like nobody else's.</p>
       </div>
       <div class="ffup" style="flex: 0 1 320px; margin: 0 auto">
-        <div style="border-radius: 50px 50px 0 0; padding: 10px 10px 0; background: #26222b">
+        <div style="border-radius: 50px 50px 0 0; padding: 10px 10px 0; background: #091631">
           <img src="img/coral-lab.jpg" alt="Coral frags growing in the Lab" loading="lazy" style="display: block; width: 100%; height: 500px; object-fit: cover; object-position: top; border-radius: 41px 41px 0 0">
         </div>
       </div>
@@ -417,111 +449,111 @@ a{color:#141216}a:hover{color:#c4652f}
   </section>
 
   <section style="position: relative; z-index: 1; padding: 150px 0 140px; display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center">
-    <h2 class="ffrise" style="margin: 0; font-weight: 900; line-height: .92; letter-spacing: -0.05em; padding: 0 24px; font-size: clamp(48px, 7.5vw, 104px)">Find the<br>rare ones.</h2>
-    <p class="ffrise2" style="margin: 0; padding: 0 24px; font-size: 18px; font-weight: 700; color: #6b6670; max-width: 500px; line-height: 1.5">Golden fish and 71 wild species to collect, from a humble goldfish to the Golden Dragon Koi.</p>
+    <h2 style="margin: 0; font-weight: 900; line-height: .97; letter-spacing: -0.028em; padding: 0 24px; font-size: clamp(48px, 7.5vw, 104px)">Find the<br>rare ones.</h2>
+    <p style="margin: 0; padding: 0 24px; font-size: 18px; font-weight: 600; color: #6f5d71; max-width: 500px; line-height: 1.5">Golden fish and 71 wild species to collect, from a humble goldfish to the Golden Dragon Koi.</p>
     <div style="width: 100%; margin-top: 40px; display: flex; flex-direction: column; gap: 16px">
       <div class="ffrowa" style="display: flex; gap: 16px; width: max-content; padding-left: 4vw">
-        <div style="width: 190px; flex-shrink: 0; background: #ffffff; border-radius: 30px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
+        <div style="width: 190px; flex-shrink: 0; background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 22px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
           <div style="height: 80px; display: flex; align-items: center; justify-content: center"><img class="px" src="img/fish-goldfish.png" alt="" style="max-width: 128px; max-height: 80px"></div>
           <b style="font-size: 15px; font-weight: 900; line-height: 1.2">Goldfish</b>
-          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #6b6670"><span style="width: 9px; height: 9px; border-radius: 5px; background: #e3a21c"></span>Golden</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 14px; font-weight: 500; color: #6f5d71"><span style="width: 9px; height: 9px; border-radius: 2px; background: #e3a21c"></span>Golden</span>
         </div>
-        <div style="width: 190px; flex-shrink: 0; background: #ffffff; border-radius: 30px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
+        <div style="width: 190px; flex-shrink: 0; background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 22px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
           <div style="height: 80px; display: flex; align-items: center; justify-content: center"><img class="px" src="img/fish-betta.png" alt="" style="max-width: 128px; max-height: 80px"></div>
           <b style="font-size: 15px; font-weight: 900; line-height: 1.2">Betta</b>
-          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #6b6670"><span style="width: 9px; height: 9px; border-radius: 5px; background: #4f9a45"></span>Uncommon</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 14px; font-weight: 500; color: #6f5d71"><span style="width: 9px; height: 9px; border-radius: 2px; background: #4f9a45"></span>Uncommon</span>
         </div>
-        <div style="width: 190px; flex-shrink: 0; background: #ffffff; border-radius: 30px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
+        <div style="width: 190px; flex-shrink: 0; background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 22px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
           <div style="height: 80px; display: flex; align-items: center; justify-content: center"><img class="px" src="img/fish-snowflake-koi.png" alt="" style="max-width: 128px; max-height: 80px"></div>
           <b style="font-size: 15px; font-weight: 900; line-height: 1.2">Snowflake Koi</b>
-          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #6b6670"><span style="width: 9px; height: 9px; border-radius: 5px; background: #3f86c9"></span>Rare</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 14px; font-weight: 500; color: #6f5d71"><span style="width: 9px; height: 9px; border-radius: 2px; background: #3f86c9"></span>Rare</span>
         </div>
-        <div style="width: 190px; flex-shrink: 0; background: #ffffff; border-radius: 30px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
+        <div style="width: 190px; flex-shrink: 0; background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 22px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
           <div style="height: 80px; display: flex; align-items: center; justify-content: center"><img class="px" src="img/fish-maple-koi.png" alt="" style="max-width: 128px; max-height: 80px"></div>
           <b style="font-size: 15px; font-weight: 900; line-height: 1.2">Maple Koi</b>
-          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #6b6670"><span style="width: 9px; height: 9px; border-radius: 5px; background: #3f86c9"></span>Rare</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 14px; font-weight: 500; color: #6f5d71"><span style="width: 9px; height: 9px; border-radius: 2px; background: #3f86c9"></span>Rare</span>
         </div>
-        <div style="width: 190px; flex-shrink: 0; background: #ffffff; border-radius: 30px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
+        <div style="width: 190px; flex-shrink: 0; background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 22px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
           <div style="height: 80px; display: flex; align-items: center; justify-content: center"><img class="px" src="img/fish-axolotl.png" alt="" style="max-width: 128px; max-height: 80px"></div>
           <b style="font-size: 15px; font-weight: 900; line-height: 1.2">Axolotl</b>
-          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #6b6670"><span style="width: 9px; height: 9px; border-radius: 5px; background: #d9930f"></span>Legendary</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 14px; font-weight: 500; color: #6f5d71"><span style="width: 9px; height: 9px; border-radius: 2px; background: #d9930f"></span>Legendary</span>
         </div>
-        <div style="width: 190px; flex-shrink: 0; background: #ffffff; border-radius: 30px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
+        <div style="width: 190px; flex-shrink: 0; background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 22px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
           <div style="height: 80px; display: flex; align-items: center; justify-content: center"><img class="px" src="img/fish-mandarin-dragonet.png" alt="" style="max-width: 128px; max-height: 80px"></div>
           <b style="font-size: 15px; font-weight: 900; line-height: 1.2">Mandarin Dragonet</b>
-          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #6b6670"><span style="width: 9px; height: 9px; border-radius: 5px; background: #d9930f"></span>Legendary</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 14px; font-weight: 500; color: #6f5d71"><span style="width: 9px; height: 9px; border-radius: 2px; background: #d9930f"></span>Legendary</span>
         </div>
-        <div style="width: 190px; flex-shrink: 0; background: #ffffff; border-radius: 30px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
+        <div style="width: 190px; flex-shrink: 0; background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 22px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
           <div style="height: 80px; display: flex; align-items: center; justify-content: center"><img class="px" src="img/fish-clown-triggerfish.png" alt="" style="max-width: 128px; max-height: 80px"></div>
           <b style="font-size: 15px; font-weight: 900; line-height: 1.2">Clown Triggerfish</b>
-          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #6b6670"><span style="width: 9px; height: 9px; border-radius: 5px; background: #d9930f"></span>Legendary</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 14px; font-weight: 500; color: #6f5d71"><span style="width: 9px; height: 9px; border-radius: 2px; background: #d9930f"></span>Legendary</span>
         </div>
-        <div style="width: 190px; flex-shrink: 0; background: #ffffff; border-radius: 30px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
+        <div style="width: 190px; flex-shrink: 0; background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 22px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
           <div style="height: 80px; display: flex; align-items: center; justify-content: center"><img class="px" src="img/fish-harlequin-tuskfish.png" alt="" style="max-width: 128px; max-height: 80px"></div>
           <b style="font-size: 15px; font-weight: 900; line-height: 1.2">Harlequin Tuskfish</b>
-          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #6b6670"><span style="width: 9px; height: 9px; border-radius: 5px; background: #d9930f"></span>Legendary</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 14px; font-weight: 500; color: #6f5d71"><span style="width: 9px; height: 9px; border-radius: 2px; background: #d9930f"></span>Legendary</span>
         </div>
-        <div style="width: 190px; flex-shrink: 0; background: #ffffff; border-radius: 30px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
+        <div style="width: 190px; flex-shrink: 0; background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 22px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
           <div style="height: 80px; display: flex; align-items: center; justify-content: center"><img class="px" src="img/fish-goldfish.png" alt="" style="max-width: 128px; max-height: 80px"></div>
           <b style="font-size: 15px; font-weight: 900; line-height: 1.2">Goldfish</b>
-          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #6b6670"><span style="width: 9px; height: 9px; border-radius: 5px; background: #e3a21c"></span>Golden</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 14px; font-weight: 500; color: #6f5d71"><span style="width: 9px; height: 9px; border-radius: 2px; background: #e3a21c"></span>Golden</span>
         </div>
-        <div style="width: 190px; flex-shrink: 0; background: #ffffff; border-radius: 30px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
+        <div style="width: 190px; flex-shrink: 0; background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 22px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
           <div style="height: 80px; display: flex; align-items: center; justify-content: center"><img class="px" src="img/fish-betta.png" alt="" style="max-width: 128px; max-height: 80px"></div>
           <b style="font-size: 15px; font-weight: 900; line-height: 1.2">Betta</b>
-          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #6b6670"><span style="width: 9px; height: 9px; border-radius: 5px; background: #4f9a45"></span>Uncommon</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 14px; font-weight: 500; color: #6f5d71"><span style="width: 9px; height: 9px; border-radius: 2px; background: #4f9a45"></span>Uncommon</span>
         </div>
       </div>
       <div class="ffrowb" style="display: flex; gap: 16px; width: max-content; padding-left: 4vw">
-        <div style="width: 190px; flex-shrink: 0; background: #ffffff; border-radius: 30px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
+        <div style="width: 190px; flex-shrink: 0; background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 22px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
           <div style="height: 80px; display: flex; align-items: center; justify-content: center"><img class="px" src="img/fish-aurora-char.png" alt="" style="max-width: 128px; max-height: 80px"></div>
           <b style="font-size: 15px; font-weight: 900; line-height: 1.2">Aurora Char</b>
-          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #6b6670"><span style="width: 9px; height: 9px; border-radius: 5px; background: #d9930f"></span>Legendary</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 14px; font-weight: 500; color: #6f5d71"><span style="width: 9px; height: 9px; border-radius: 2px; background: #d9930f"></span>Legendary</span>
         </div>
-        <div style="width: 190px; flex-shrink: 0; background: #ffffff; border-radius: 30px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
+        <div style="width: 190px; flex-shrink: 0; background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 22px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
           <div style="height: 80px; display: flex; align-items: center; justify-content: center"><img class="px" src="img/fish-super-red-arowana.png" alt="" style="max-width: 128px; max-height: 80px"></div>
           <b style="font-size: 15px; font-weight: 900; line-height: 1.2">Super Red Arowana</b>
-          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #6b6670"><span style="width: 9px; height: 9px; border-radius: 5px; background: #e3a21c"></span>Golden</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 14px; font-weight: 500; color: #6f5d71"><span style="width: 9px; height: 9px; border-radius: 2px; background: #e3a21c"></span>Golden</span>
         </div>
-        <div style="width: 190px; flex-shrink: 0; background: #ffffff; border-radius: 30px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
+        <div style="width: 190px; flex-shrink: 0; background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 22px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
           <div style="height: 80px; display: flex; align-items: center; justify-content: center"><img class="px" src="img/fish-emperor-betta.png" alt="" style="max-width: 128px; max-height: 80px"></div>
           <b style="font-size: 15px; font-weight: 900; line-height: 1.2">Emperor Betta</b>
-          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #6b6670"><span style="width: 9px; height: 9px; border-radius: 5px; background: #df5546"></span>Mythic</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 14px; font-weight: 500; color: #6f5d71"><span style="width: 9px; height: 9px; border-radius: 2px; background: #df5546"></span>Mythic</span>
         </div>
-        <div style="width: 190px; flex-shrink: 0; background: #ffffff; border-radius: 30px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
+        <div style="width: 190px; flex-shrink: 0; background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 22px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
           <div style="height: 80px; display: flex; align-items: center; justify-content: center"><img class="px" src="img/fish-crystal-angelfish.png" alt="" style="max-width: 128px; max-height: 80px"></div>
           <b style="font-size: 15px; font-weight: 900; line-height: 1.2">Crystal Angelfish</b>
-          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #6b6670"><span style="width: 9px; height: 9px; border-radius: 5px; background: #df5546"></span>Mythic</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 14px; font-weight: 500; color: #6f5d71"><span style="width: 9px; height: 9px; border-radius: 2px; background: #df5546"></span>Mythic</span>
         </div>
-        <div style="width: 190px; flex-shrink: 0; background: #ffffff; border-radius: 30px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
+        <div style="width: 190px; flex-shrink: 0; background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 22px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
           <div style="height: 80px; display: flex; align-items: center; justify-content: center"><img class="px" src="img/fish-gem-tang.png" alt="" style="max-width: 128px; max-height: 80px"></div>
           <b style="font-size: 15px; font-weight: 900; line-height: 1.2">Gem Tang</b>
-          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #6b6670"><span style="width: 9px; height: 9px; border-radius: 5px; background: #df5546"></span>Mythic</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 14px; font-weight: 500; color: #6f5d71"><span style="width: 9px; height: 9px; border-radius: 2px; background: #df5546"></span>Mythic</span>
         </div>
-        <div style="width: 190px; flex-shrink: 0; background: #ffffff; border-radius: 30px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
+        <div style="width: 190px; flex-shrink: 0; background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 22px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
           <div style="height: 80px; display: flex; align-items: center; justify-content: center"><img class="px" src="img/fish-moonlight-koi.png" alt="" style="max-width: 128px; max-height: 80px"></div>
           <b style="font-size: 15px; font-weight: 900; line-height: 1.2">Moonlight Koi</b>
-          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #6b6670"><span style="width: 9px; height: 9px; border-radius: 5px; background: #df5546"></span>Mythic</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 14px; font-weight: 500; color: #6f5d71"><span style="width: 9px; height: 9px; border-radius: 2px; background: #df5546"></span>Mythic</span>
         </div>
-        <div style="width: 190px; flex-shrink: 0; background: #ffffff; border-radius: 30px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
+        <div style="width: 190px; flex-shrink: 0; background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 22px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
           <div style="height: 80px; display: flex; align-items: center; justify-content: center"><img class="px" src="img/fish-phoenix-goldfish.png" alt="" style="max-width: 128px; max-height: 80px"></div>
           <b style="font-size: 15px; font-weight: 900; line-height: 1.2">Phoenix Goldfish</b>
-          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #6b6670"><span style="width: 9px; height: 9px; border-radius: 5px; background: #df5546"></span>Mythic</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 14px; font-weight: 500; color: #6f5d71"><span style="width: 9px; height: 9px; border-radius: 2px; background: #df5546"></span>Mythic</span>
         </div>
-        <div style="width: 190px; flex-shrink: 0; background: #ffffff; border-radius: 30px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
+        <div style="width: 190px; flex-shrink: 0; background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 22px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
           <div style="height: 80px; display: flex; align-items: center; justify-content: center"><img class="px" src="img/fish-golden-dragon-koi.png" alt="" style="max-width: 128px; max-height: 80px"></div>
           <b style="font-size: 15px; font-weight: 900; line-height: 1.2">Golden Dragon Koi</b>
-          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #6b6670"><span style="width: 9px; height: 9px; border-radius: 5px; background: #df5546"></span>Mythic</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 14px; font-weight: 500; color: #6f5d71"><span style="width: 9px; height: 9px; border-radius: 2px; background: #df5546"></span>Mythic</span>
         </div>
-        <div style="width: 190px; flex-shrink: 0; background: #ffffff; border-radius: 30px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
+        <div style="width: 190px; flex-shrink: 0; background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 22px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
           <div style="height: 80px; display: flex; align-items: center; justify-content: center"><img class="px" src="img/fish-aurora-char.png" alt="" style="max-width: 128px; max-height: 80px"></div>
           <b style="font-size: 15px; font-weight: 900; line-height: 1.2">Aurora Char</b>
-          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #6b6670"><span style="width: 9px; height: 9px; border-radius: 5px; background: #d9930f"></span>Legendary</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 14px; font-weight: 500; color: #6f5d71"><span style="width: 9px; height: 9px; border-radius: 2px; background: #d9930f"></span>Legendary</span>
         </div>
-        <div style="width: 190px; flex-shrink: 0; background: #ffffff; border-radius: 30px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
+        <div style="width: 190px; flex-shrink: 0; background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 22px; padding: 22px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-sizing: border-box">
           <div style="height: 80px; display: flex; align-items: center; justify-content: center"><img class="px" src="img/fish-super-red-arowana.png" alt="" style="max-width: 128px; max-height: 80px"></div>
           <b style="font-size: 15px; font-weight: 900; line-height: 1.2">Super Red Arowana</b>
-          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #6b6670"><span style="width: 9px; height: 9px; border-radius: 5px; background: #e3a21c"></span>Golden</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Pixelify Sans', ui-rounded, sans-serif; font-size: 14px; font-weight: 500; color: #6f5d71"><span style="width: 9px; height: 9px; border-radius: 2px; background: #e3a21c"></span>Golden</span>
         </div>
       </div>
     </div>
@@ -529,38 +561,38 @@ a{color:#141216}a:hover{color:#c4652f}
 
   <section style="position: relative; z-index: 1; padding: 0 24px 150px">
     <div style="max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr)); gap: 20px">
-      <div class="ffrise" style="background: #ffffff; border-radius: 40px; padding: 48px 32px 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; overflow: hidden; height: 640px; box-sizing: border-box">
-        <h3 style="margin: 0; font-weight: 900; font-size: clamp(32px, 3.4vw, 44px); line-height: .98; letter-spacing: -0.045em">Breed something new.</h3>
-        <p style="margin: 0; font-size: 16px; font-weight: 700; color: #6b6670; line-height: 1.5; max-width: 340px">The Nursery shows your best pairs and what each one could hatch.</p>
-        <div class="ffdriftc" style="width: 264px; margin-top: 26px">
-          <div style="border-radius: 44px 44px 0 0; padding: 9px 9px 0; background: #141216">
+      <div style="background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 40px; padding: 48px 32px 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; overflow: hidden; height: 640px; box-sizing: border-box">
+        <h3 style="margin: 0; font-weight: 900; font-size: clamp(32px, 3.4vw, 44px); line-height: 1.04; letter-spacing: -0.02em">Breed something new.</h3>
+        <p style="margin: 0; font-size: 16px; font-weight: 600; color: #6f5d71; line-height: 1.5; max-width: 340px">The Nursery shows your best pairs and what each one could hatch.</p>
+        <div style="width: 264px; margin-top: 26px">
+          <div style="border-radius: 44px 44px 0 0; padding: 9px 9px 0; background: #241a26">
             <img src="img/nursery.jpg" alt="The Nursery" loading="lazy" style="display: block; width: 100%; height: 440px; object-fit: cover; object-position: bottom; border-radius: 36px 36px 0 0">
           </div>
         </div>
       </div>
-      <div class="ffrise" style="background: #ffffff; border-radius: 40px; padding: 48px 32px 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; overflow: hidden; height: 640px; box-sizing: border-box">
-        <h3 style="margin: 0; font-weight: 900; font-size: clamp(32px, 3.4vw, 44px); line-height: .98; letter-spacing: -0.045em">Every catch is a card.</h3>
-        <p style="margin: 0; font-size: 16px; font-weight: 700; color: #6b6670; line-height: 1.5; max-width: 340px">Size records, golden finds and a note on every species you meet.</p>
-        <div class="ffdriftc" style="width: 264px; margin-top: 26px">
-          <div style="border-radius: 44px 44px 0 0; padding: 9px 9px 0; background: #141216">
+      <div style="background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 40px; padding: 48px 32px 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; overflow: hidden; height: 640px; box-sizing: border-box">
+        <h3 style="margin: 0; font-weight: 900; font-size: clamp(32px, 3.4vw, 44px); line-height: 1.04; letter-spacing: -0.02em">Every catch is a card.</h3>
+        <p style="margin: 0; font-size: 16px; font-weight: 600; color: #6f5d71; line-height: 1.5; max-width: 340px">Size records, golden finds and a note on every species you meet.</p>
+        <div style="width: 264px; margin-top: 26px">
+          <div style="border-radius: 44px 44px 0 0; padding: 9px 9px 0; background: #241a26">
             <img src="img/catch-card.jpg" alt="A Golden Butterfly Koi catch card" loading="lazy" style="display: block; width: 100%; height: 440px; object-fit: cover; object-position: center; border-radius: 36px 36px 0 0">
           </div>
         </div>
       </div>
-      <div class="ffrise" style="background: #ffffff; border-radius: 40px; padding: 48px 32px 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; overflow: hidden; height: 640px; box-sizing: border-box">
-        <h3 style="margin: 0; font-weight: 900; font-size: clamp(32px, 3.4vw, 44px); line-height: .98; letter-spacing: -0.045em">Send out a crew.</h3>
-        <p style="margin: 0; font-size: 16px; font-weight: 700; color: #6b6670; line-height: 1.5; max-width: 340px">Expeditions to faraway rivers and reefs bring home fish you will not find anywhere else.</p>
-        <div class="ffdriftc" style="width: 264px; margin-top: 26px">
-          <div style="border-radius: 44px 44px 0 0; padding: 9px 9px 0; background: #141216">
+      <div style="background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 40px; padding: 48px 32px 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; overflow: hidden; height: 640px; box-sizing: border-box">
+        <h3 style="margin: 0; font-weight: 900; font-size: clamp(32px, 3.4vw, 44px); line-height: 1.04; letter-spacing: -0.02em">Send out a crew.</h3>
+        <p style="margin: 0; font-size: 16px; font-weight: 600; color: #6f5d71; line-height: 1.5; max-width: 340px">Expeditions to faraway rivers and reefs bring home fish you will not find anywhere else.</p>
+        <div style="width: 264px; margin-top: 26px">
+          <div style="border-radius: 44px 44px 0 0; padding: 9px 9px 0; background: #241a26">
             <img src="img/explore.jpg" alt="The Explore sheet" loading="lazy" style="display: block; width: 100%; height: 440px; object-fit: cover; object-position: bottom; border-radius: 36px 36px 0 0">
           </div>
         </div>
       </div>
-      <div class="ffrise" style="background: #ffffff; border-radius: 40px; padding: 48px 32px 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; overflow: hidden; height: 640px; box-sizing: border-box">
-        <h3 style="margin: 0; font-weight: 900; font-size: clamp(32px, 3.4vw, 44px); line-height: .98; letter-spacing: -0.045em">Visit your friends.</h3>
-        <p style="margin: 0; font-size: 16px; font-weight: 700; color: #6b6670; line-height: 1.5; max-width: 340px">Add keepers by code or QR code, leave a shell, and enter the weekly show.</p>
-        <div class="ffdriftc" style="width: 264px; margin-top: 26px">
-          <div style="border-radius: 44px 44px 0 0; padding: 9px 9px 0; background: #141216">
+      <div style="background: #fdf9ee; box-shadow: inset 0 0 0 1.5px rgba(59,42,61,.11); border-radius: 40px; padding: 48px 32px 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; overflow: hidden; height: 640px; box-sizing: border-box">
+        <h3 style="margin: 0; font-weight: 900; font-size: clamp(32px, 3.4vw, 44px); line-height: 1.04; letter-spacing: -0.02em">Visit your friends.</h3>
+        <p style="margin: 0; font-size: 16px; font-weight: 600; color: #6f5d71; line-height: 1.5; max-width: 340px">Add keepers by code or QR code, leave a shell, and enter the weekly show.</p>
+        <div style="width: 264px; margin-top: 26px">
+          <div style="border-radius: 44px 44px 0 0; padding: 9px 9px 0; background: #241a26">
             <img src="img/club.jpg" alt="The Club, with shows and friends" loading="lazy" style="display: block; width: 100%; height: 440px; object-fit: cover; object-position: bottom; border-radius: 36px 36px 0 0">
           </div>
         </div>
@@ -569,9 +601,9 @@ a{color:#141216}a:hover{color:#c4652f}
   </section>
 
   <section aria-labelledby="rvh" style="position: relative; z-index: 1; padding: 0 0 150px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px">
-    <h2 id="rvh" class="ffrise" style="margin: 0; padding: 0 24px; font-weight: 900; font-size: clamp(44px, 6.5vw, 88px); line-height: .94; letter-spacing: -0.05em">Keepers love it.</h2>
-    <p class="ffrise2" style="margin: 0; padding: 0 24px; max-width: 560px; font-size: 18px; font-weight: 700; line-height: 1.55; color: #6b6670">Real reviews from the App Store. Tap any card to read the whole thing.</p>
-    <div class="rvwrap ffrise2" aria-label="App Store reviews">
+    <h2 id="rvh" style="margin: 0; padding: 0 24px; font-weight: 900; font-size: clamp(44px, 6.5vw, 88px); line-height: 1.04; letter-spacing: -0.028em">Keepers love it.</h2>
+    <p style="margin: 0; padding: 0 24px; max-width: 560px; font-size: 18px; font-weight: 600; line-height: 1.55; color: #6f5d71">Real reviews from the App Store. Tap any card to read the whole thing.</p>
+    <div class="rvwrap" aria-label="App Store reviews">
       <div class="rvtrack"><div class="rvrow rva"><button type="button" class="rvc" data-r="0"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>…in before this game blows up!</b><span class="rvx">Don’t sleep on this game. … Cozy, beautiful graphics … Seriously dev’s, job well done. I see design awards in your near future.</span><span class="rvwho"><span>Drew Cease</span><span aria-hidden="true">🇺🇸</span></span></button><button type="button" class="rvc" data-r="1"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>My favorite game ever</b><span class="rvx">I love this game so much! I feel like I’ve been looking for a game like this for a while and here it is.</span><span class="rvwho"><span>69_noodles</span><span aria-hidden="true">🇺🇸</span></span></button><button type="button" class="rvc" data-r="2"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>So relaxing and fun</b><span class="rvx">love this game! it’s really beautifully designed and relaxing to play! highly recommend</span><span class="rvwho"><span>pinkgiraffe29</span><span aria-hidden="true">🇺🇸</span></span></button><button type="button" class="rvc" data-r="3"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>Amazing and hopeful for the future</b><span class="rvx">I’ve played a lot of aquarium sims but none with the level of sheer charm and potential as this.</span><span class="rvwho"><span>Rainbowwing869</span><span aria-hidden="true">🇺🇸</span></span></button><button type="button" class="rvc" data-r="4"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>LOVE</b><span class="rvx">very cute very peaceful very beautiful LOVE IT …</span><span class="rvwho"><span>fig_wasp</span><span aria-hidden="true">🇺🇸</span></span></button><button type="button" class="rvc" data-r="5"><span class="rvst" role="img" aria-label="4 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>Love it</b><span class="rvx">I thought i’d never pay for any game on mobile. But here i am… after a busy day this game always calms me down and helps me unwind.</span><span class="rvwho"><span>Sannemander 🐌</span><span aria-hidden="true">🇳🇱</span></span></button><button type="button" class="rvc" data-r="6"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>Cozy game</b><span class="rvx">Best game to relax and release your stress, simple game but still fun and joyful to play.</span><span class="rvwho"><span>Jcks7</span><span aria-hidden="true">🇲🇾</span></span></button><span class="rvcopy"><button type="button" class="rvc" data-r="0" aria-hidden="true" tabindex="-1"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>…in before this game blows up!</b><span class="rvx">Don’t sleep on this game. … Cozy, beautiful graphics … Seriously dev’s, job well done. I see design awards in your near future.</span><span class="rvwho"><span>Drew Cease</span><span aria-hidden="true">🇺🇸</span></span></button><button type="button" class="rvc" data-r="1" aria-hidden="true" tabindex="-1"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>My favorite game ever</b><span class="rvx">I love this game so much! I feel like I’ve been looking for a game like this for a while and here it is.</span><span class="rvwho"><span>69_noodles</span><span aria-hidden="true">🇺🇸</span></span></button><button type="button" class="rvc" data-r="2" aria-hidden="true" tabindex="-1"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>So relaxing and fun</b><span class="rvx">love this game! it’s really beautifully designed and relaxing to play! highly recommend</span><span class="rvwho"><span>pinkgiraffe29</span><span aria-hidden="true">🇺🇸</span></span></button><button type="button" class="rvc" data-r="3" aria-hidden="true" tabindex="-1"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>Amazing and hopeful for the future</b><span class="rvx">I’ve played a lot of aquarium sims but none with the level of sheer charm and potential as this.</span><span class="rvwho"><span>Rainbowwing869</span><span aria-hidden="true">🇺🇸</span></span></button><button type="button" class="rvc" data-r="4" aria-hidden="true" tabindex="-1"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>LOVE</b><span class="rvx">very cute very peaceful very beautiful LOVE IT …</span><span class="rvwho"><span>fig_wasp</span><span aria-hidden="true">🇺🇸</span></span></button><button type="button" class="rvc" data-r="5" aria-hidden="true" tabindex="-1"><span class="rvst" role="img" aria-label="4 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>Love it</b><span class="rvx">I thought i’d never pay for any game on mobile. But here i am… after a busy day this game always calms me down and helps me unwind.</span><span class="rvwho"><span>Sannemander 🐌</span><span aria-hidden="true">🇳🇱</span></span></button><button type="button" class="rvc" data-r="6" aria-hidden="true" tabindex="-1"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>Cozy game</b><span class="rvx">Best game to relax and release your stress, simple game but still fun and joyful to play.</span><span class="rvwho"><span>Jcks7</span><span aria-hidden="true">🇲🇾</span></span></button></span></div></div>
       <div class="rvtrack"><div class="rvrow rvb"><button type="button" class="rvc" data-r="7"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>Beautiful!</b><span class="rvx">… it’s amazing and everything i’ve been looking for in an aquarium game</span><span class="rvwho"><span>moonlessx</span><span aria-hidden="true">🇺🇸</span></span></button><button type="button" class="rvc" data-r="8"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>Love!! One Suggestion!</b><span class="rvx">I absolutely love this game, downloaded it this morning and i already bought the full version 🫢 SO WORTH IT.</span><span class="rvwho"><span>game.raterr</span><span aria-hidden="true">🇺🇸</span></span></button><button type="button" class="rvc" data-r="9"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>Love itt</b><span class="rvx">I love it, reminds me of my pet shrimps before. I can take care of them again 🥰.</span><span class="rvwho"><span>sleepy_meow</span><span aria-hidden="true">🇵🇭</span></span></button><button type="button" class="rvc" data-r="10"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>OBSESSED</b><span class="rvx">Wonderful game so happy I came across it!!</span><span class="rvwho"><span>JJJJJJJ122</span><span aria-hidden="true">🇺🇸</span></span></button><button type="button" class="rvc" data-r="11"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>This is awesome</b><span class="rvx">Since I’ve been playing with game I have been hooked, it’s so enjoyable.</span><span class="rvwho"><span>NVT2.0</span><span aria-hidden="true">🇺🇸</span></span></button><button type="button" class="rvc" data-r="12"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>cute game!</b><span class="rvx">… most things are very straight forward and this is a cute and relaxing game :)</span><span class="rvwho"><span>nenebugger</span><span aria-hidden="true">🇺🇸</span></span></button><button type="button" class="rvc" data-r="13"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>A Cozy Game</b><span class="rvx">i really do love the artstyle</span><span class="rvwho"><span>Cedric-S</span><span aria-hidden="true">🇩🇪</span></span></button><span class="rvcopy"><button type="button" class="rvc" data-r="7" aria-hidden="true" tabindex="-1"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>Beautiful!</b><span class="rvx">… it’s amazing and everything i’ve been looking for in an aquarium game</span><span class="rvwho"><span>moonlessx</span><span aria-hidden="true">🇺🇸</span></span></button><button type="button" class="rvc" data-r="8" aria-hidden="true" tabindex="-1"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>Love!! One Suggestion!</b><span class="rvx">I absolutely love this game, downloaded it this morning and i already bought the full version 🫢 SO WORTH IT.</span><span class="rvwho"><span>game.raterr</span><span aria-hidden="true">🇺🇸</span></span></button><button type="button" class="rvc" data-r="9" aria-hidden="true" tabindex="-1"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>Love itt</b><span class="rvx">I love it, reminds me of my pet shrimps before. I can take care of them again 🥰.</span><span class="rvwho"><span>sleepy_meow</span><span aria-hidden="true">🇵🇭</span></span></button><button type="button" class="rvc" data-r="10" aria-hidden="true" tabindex="-1"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>OBSESSED</b><span class="rvx">Wonderful game so happy I came across it!!</span><span class="rvwho"><span>JJJJJJJ122</span><span aria-hidden="true">🇺🇸</span></span></button><button type="button" class="rvc" data-r="11" aria-hidden="true" tabindex="-1"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>This is awesome</b><span class="rvx">Since I’ve been playing with game I have been hooked, it’s so enjoyable.</span><span class="rvwho"><span>NVT2.0</span><span aria-hidden="true">🇺🇸</span></span></button><button type="button" class="rvc" data-r="12" aria-hidden="true" tabindex="-1"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>cute game!</b><span class="rvx">… most things are very straight forward and this is a cute and relaxing game :)</span><span class="rvwho"><span>nenebugger</span><span aria-hidden="true">🇺🇸</span></span></button><button type="button" class="rvc" data-r="13" aria-hidden="true" tabindex="-1"><span class="rvst" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><b>A Cozy Game</b><span class="rvx">i really do love the artstyle</span><span class="rvwho"><span>Cedric-S</span><span aria-hidden="true">🇩🇪</span></span></button></span></div></div>
     </div>
@@ -585,7 +617,7 @@ a{color:#141216}a:hover{color:#c4652f}
     <h3 id="rvdt"></h3>
     <p id="rvdb"></p>
     <div class="rvdfoot"><span id="rvdn"></span><span id="rvdw"></span></div>
-    <a class="rvdcta" href="https://apps.apple.com/app/id6826121169">Download on the App Store</a>
+    <a class="gbtn rvdcta" href="https://apps.apple.com/app/id6826121169">Download on the App Store</a>
   </dialog>
   <script>
   (() => {
@@ -608,22 +640,22 @@ a{color:#141216}a:hover{color:#c4652f}
   </script>
 
   <section style="position: relative; z-index: 1; padding: 0 24px 150px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px">
-    <h2 class="ffrise" style="margin: 0; font-weight: 900; font-size: clamp(44px, 6.5vw, 88px); line-height: .94; letter-spacing: -0.05em">No forced ads.<br>No account.</h2>
-    <p class="ffrise2" style="margin: 0; max-width: 560px; font-size: 18px; font-weight: 700; line-height: 1.55; color: #6b6670">Play free, and unlock the full game once for $4.99. Short videos for a bonus are always your choice, and the full game gives the bonuses without them.</p>
-    <div class="ffrise2" style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 10px">
-      <span style="display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 999px; background: #ffffff; font-size: 14px; font-weight: 800">
+    <h2 style="margin: 0; font-weight: 900; font-size: clamp(44px, 6.5vw, 88px); line-height: 1.04; letter-spacing: -0.028em">No forced ads.<br>No account.</h2>
+    <p style="margin: 0; max-width: 560px; font-size: 18px; font-weight: 600; line-height: 1.55; color: #6f5d71">Play free, and unlock the full game once for $4.99. Short videos for a bonus are always your choice, and the full game gives the bonuses without them.</p>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 10px">
+      <span style="display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 999px; background: #f6efd9; font-size: 14px; font-weight: 800">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#141216" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18h10a4 4 0 0 0 .6-8A6 6 0 0 0 6 11a3.5 3.5 0 0 0 1 7z"></path></svg>
         iCloud sync
       </span>
-      <span style="display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 999px; background: #ffffff; font-size: 14px; font-weight: 800">
+      <span style="display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 999px; background: #f6efd9; font-size: 14px; font-weight: 800">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#141216" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"></path></svg>
         Home Screen widgets
       </span>
-      <span style="display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 999px; background: #ffffff; font-size: 14px; font-weight: 800">
+      <span style="display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 999px; background: #f6efd9; font-size: 14px; font-weight: 800">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#141216" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9h14a3 3 0 0 1 0 6H5a3 3 0 0 1 0-6z"></path></svg>
         A pet in the Dynamic Island
       </span>
-      <span style="display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 999px; background: #ffffff; font-size: 14px; font-weight: 800">
+      <span style="display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 999px; background: #f6efd9; font-size: 14px; font-weight: 800">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#141216" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h6v18H5zM13 3h6v18h-6z"></path></svg>
         Made for iPhone Duo
       </span>
@@ -631,24 +663,25 @@ a{color:#141216}a:hover{color:#c4652f}
   </section>
 
   <section style="position: relative; z-index: 1; padding: 0 16px 20px">
-    <div class="ffgrow" style="max-width: 1160px; margin: 0 auto; border-radius: 44px; background: linear-gradient(180deg, #241d36 0%, #3b2d50 60%, #5e4257 100%); color: #ffffff; padding: clamp(72px, 9vw, 130px) 24px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px; position: relative; overflow: hidden">
+    <div class="dith ddusk" style="max-width: 1160px; margin: 0 auto; border-radius: 44px; background: #17333c; color: #fff8e8; padding: clamp(72px, 9vw, 130px) 24px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px; position: relative; overflow: hidden">
       <img class="px ffdrift" src="img/sprig.png" alt="" aria-hidden="true" loading="lazy" style="position: absolute; left: 7%; bottom: -40px; width: 120px; height: auto; opacity: .85">
       <img class="px ffdrift" src="img/sprig.png" alt="" aria-hidden="true" loading="lazy" style="position: absolute; right: 9%; bottom: -70px; width: 84px; height: auto; opacity: .6">
       <img class="px ffbob" src="img/fin.png" alt="" aria-hidden="true" loading="lazy" style="position: relative; z-index: 1; width: 146px; height: 85px">
-      <h2 style="margin: 0; font-weight: 900; line-height: .92; letter-spacing: -0.05em; position: relative; z-index: 1; font-size: clamp(48px, 7.5vw, 104px)">Slow down<br>at dusk.</h2>
-      <p style="position: relative; z-index: 1; margin: 0; font-size: 18px; font-weight: 700; color: #d9cfe0; max-width: 440px; line-height: 1.5">Day turns to night, and your garden keeps growing. Your tank will be right where you left it.</p>
-      <a href="https://apps.apple.com/app/id6826121169" style="position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 10px; height: 54px; padding: 0 26px; border-radius: 999px; background: #ffffff; color: #141216; text-decoration: none; font-weight: 900; font-size: 16px">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#141216" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"></path></svg>
+      <h2 style="margin: 0; font-weight: 900; line-height: .97; letter-spacing: -0.028em; position: relative; z-index: 1; font-size: clamp(48px, 7.5vw, 104px)">Slow down<br>at dusk.</h2>
+      <p style="position: relative; z-index: 1; margin: 0; font-size: 18px; font-weight: 600; color: #cfe2dc; max-width: 440px; line-height: 1.5">Day turns to night, and your garden keeps growing. Your tank will be right where you left it.</p>
+      <a href="https://apps.apple.com/app/id6826121169" class="gbtn paper" style="position: relative; z-index: 1">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"></path></svg>
         Download on the App Store
       </a>
     </div>
   </section>
   </main>
 
-  <footer style="position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; padding: 36px 24px 48px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px">
+  <div class="shelf" aria-hidden="true"></div>
+  <footer style="position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; padding: 30px 24px 48px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px">
     <div style="display: flex; align-items: center; gap: 10px">
       <img src="img/icon.png" alt="" width="30" height="30" loading="lazy" style="width: 30px; height: 30px; border-radius: 8px">
-      <span style="font-size: 14px; font-weight: 800; color: #6b6670">Fin &amp; Fern · Made by Kevin Hall</span>
+      <span style="font-size: 14px; font-weight: 800; color: #6f5d71">Fin &amp; Fern · Made by Kevin Hall</span>
     </div>
     <nav aria-label="Footer" style="display: flex; gap: 24px; font-size: 14px; font-weight: 800">
       <a href="support.html">Support</a>
