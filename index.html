@@ -72,6 +72,13 @@ a{color:#141216}a:hover{color:#c4652f}
   @keyframes ffdriftc{from{transform:translateY(90px)}to{transform:translateY(0)}}
   .ffdriftc{animation:ffdriftc linear both;animation-timeline:view();animation-range:entry 0% cover 60%}
 }
+/* the hero den: a shelf from the game where the tank keeps changing, drawn crisp */
+.den{position:relative;z-index:1;width:min(780px,100%);aspect-ratio:16/9;flex:none;border-radius:34px;overflow:hidden;background:#2a2227;box-shadow:0 30px 80px -20px rgba(42,26,20,.45),0 0 0 1px rgba(20,18,22,.06)}
+.den img,.den canvas,.den video{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;image-rendering:crisp-edges}
+.den video{opacity:0;pointer-events:none}
+.den canvas{opacity:0;transition:opacity .6s ease}
+.den.live canvas{opacity:1}
+@media (max-width: 600px){.den{border-radius:22px;width:calc(100% + 16px)}}
 /* reviews: two rows drift in opposite directions; hover, focus or a finger on a card stops them */
 .rvwrap{width:100%;display:flex;flex-direction:column;gap:16px;margin-top:22px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
 .rvtrack{overflow:hidden;padding:6px 0 14px}
@@ -133,8 +140,12 @@ a{color:#141216}a:hover{color:#c4652f}
   </header>
 
   <main>
-  <section id="top" style="position: relative; z-index: 1; padding: 72px 24px 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 26px">
-    <img class="px ffbob" src="img/fin.png" alt="Fin, the pixel goldfish" style="width: 172px; height: 100px">
+  <section id="top" style="position: relative; z-index: 1; padding: 40px 24px 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 26px">
+    <div class="den" id="tk">
+      <img src="img/den-hero.jpg" alt="A tank on a shelf in the den, turning into a new kind of tank every few seconds, with the garden and the fishing pond outside the window" width="640" height="360">
+      <video id="tkv" src="img/den-hero.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1"></video>
+      <canvas id="tkc" aria-hidden="true"></canvas>
+    </div>
     <h1 style="margin: 0; font-weight: 900; line-height: .92; letter-spacing: -0.05em; font-size: clamp(52px, 9.5vw, 128px)">A little world,<br>under water.</h1>
     <p style="margin: 0; max-width: 520px; font-size: clamp(17px, 1.8vw, 20px); font-weight: 700; line-height: 1.5; color: #6b6670">Scape tanks, grow plants, catch rare fish and breed new ones. A cozy pixel aquarium for iPhone and iPad.</p>
     <a href="https://apps.apple.com/app/id6826121169" style="display: inline-flex; align-items: center; gap: 10px; height: 54px; padding: 0 26px; border-radius: 999px; background: #141216; color: #ffffff; text-decoration: none; font-weight: 900; font-size: 16px">
@@ -657,5 +668,21 @@ a{color:#141216}a:hover{color:#c4652f}
     </nav>
   </footer>
 </div>
+<script>
+/* The hero den: filmed from the game. The video is drawn onto a canvas with smoothing off, so the voxels stay crisp at any size. */
+(() => {
+  const box = document.getElementById('tk'), v = document.getElementById('tkv'), c = document.getElementById('tkc'); if (!box || !v || !c) return;
+  const x = c.getContext('2d'), RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let on = false;
+  const size = () => { const r = box.getBoundingClientRect(), d = Math.min(2, devicePixelRatio || 1); c.width = Math.round(r.width * d); c.height = Math.round(r.height * d); x.imageSmoothingEnabled = false; paint(); };
+  function paint(){ if (v.readyState < 2) return; x.imageSmoothingEnabled = false; x.drawImage(v, 0, 0, c.width, c.height); if (!on){ on = true; box.classList.add('live'); } }
+  const loop = () => { paint(); if (v.requestVideoFrameCallback) v.requestVideoFrameCallback(loop); else if (!v.paused) requestAnimationFrame(loop); };
+  v.addEventListener('playing', () => { if (!v.requestVideoFrameCallback) requestAnimationFrame(loop); });
+  if (v.requestVideoFrameCallback) v.requestVideoFrameCallback(loop);
+  addEventListener('resize', size); size();
+  if (RM){ v.removeAttribute('autoplay'); v.pause(); return; }
+  new IntersectionObserver(es => { if (es[0].isIntersecting) v.play().catch(() => {}); else v.pause(); }).observe(box);
+})();
+</script>
 </body>
 </html>
