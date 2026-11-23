@@ -153,7 +153,7 @@ a{color:#141216}a:hover{color:#c4652f}
       </div>
       <div class="fffanc" style="width: 300px; flex-shrink: 0; position: relative; z-index: 2">
         <div style="border-radius: 48px; padding: 9px; background: #141216; box-shadow: 0 40px 90px rgba(20,18,22,.24)">
-          <video id="playv" src="img/phone-play.mp4" poster="img/phone-play.jpg" autoplay muted loop playsinline preload="auto" aria-label="Fin &amp; Fern being played: feeding the fish, building a tank, the den, catching a rare koi and the greenhouse" style="display: block; width: 100%; height: 600px; object-fit: cover; object-position: top; border-radius: 40px; background: #22392c"></video>
+          <div id="playbox" role="img" aria-label="Fin &amp; Fern being played: feeding the fish, building a tank, the den, catching a rare koi and the greenhouse" style="position: relative; display: block; width: 100%; height: 600px; border-radius: 40px; overflow: hidden; background: #22392c"><img src="img/phone-play.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top"><video id="playv" src="img/phone-play.mp4" muted loop playsinline preload="auto" disablepictureinpicture disableremoteplayback x-webkit-airplay="deny" aria-hidden="true" tabindex="-1" style="position: absolute; left: 0; top: 0; width: 1px; height: 1px; opacity: 0; pointer-events: none"></video><canvas id="playc" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity .4s"></canvas></div>
         </div>
       </div>
       <div class="fffan-side fffanr" style="width: 260px; flex-shrink: 0; margin-left: -36px; margin-top: 80px">
@@ -658,11 +658,24 @@ a{color:#141216}a:hover{color:#c4652f}
   </footer>
 </div>
 <script>
-  /* the hero phone plays the game; it rests when off screen, and stays on its first frame for reduced motion */
+  /* the hero phone plays the game. The video stays hidden and is painted onto a canvas,
+     so the phone never shows player controls; if autoplay is blocked the still frame stays. */
   (() => {
-    const v = document.getElementById('playv'); if (!v) return;
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches){ v.removeAttribute('autoplay'); v.pause(); return; }
-    new IntersectionObserver(es => { if (es[0].isIntersecting) v.play().catch(() => {}); else v.pause(); }).observe(v);
+    const box = document.getElementById('playbox'), v = document.getElementById('playv'), c = document.getElementById('playc');
+    if (!box || !v || !c) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches){ v.removeAttribute('src'); v.load(); return; }
+    const x = c.getContext('2d');
+    const size = () => { const r = box.getBoundingClientRect(), d = Math.min(2, devicePixelRatio || 1); c.width = Math.round(r.width * d); c.height = Math.round(r.height * d); };
+    const paint = () => {
+      if (v.readyState < 2 || !c.width) return;
+      const s = Math.max(c.width / v.videoWidth, c.height / v.videoHeight), w = v.videoWidth * s;   /* cover, pinned to the top */
+      x.drawImage(v, (c.width - w) / 2, 0, w, v.videoHeight * s);
+      c.style.opacity = 1;
+    };
+    const tick = () => { paint(); if (v.requestVideoFrameCallback) v.requestVideoFrameCallback(tick); else if (!v.paused) requestAnimationFrame(tick); };
+    if (v.requestVideoFrameCallback) v.requestVideoFrameCallback(tick); else v.addEventListener('playing', () => requestAnimationFrame(tick));
+    addEventListener('resize', () => { size(); paint(); }); size();
+    new IntersectionObserver(es => { if (es[0].isIntersecting) v.play().catch(() => {}); else v.pause(); }).observe(box);
   })();
   </script>
 </body>
